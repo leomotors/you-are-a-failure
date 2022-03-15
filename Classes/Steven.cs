@@ -28,5 +28,5 @@ static public class Steven
     public static Video[] VideoList = {
             new Video("https://www.youtube.com/watch?v=lO9K7VMFo2Y", "Failure", 0.7),
             new Video("https://www.youtube.com/watch?v=VvO_HpyVQWo", "Stupid")
-          };
+        };
 }

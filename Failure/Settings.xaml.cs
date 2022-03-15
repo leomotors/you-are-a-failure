@@ -50,10 +50,10 @@ public sealed partial class Settings : Page
     private async void ViewLicense_Click(object sender, RoutedEventArgs e)
     {
         string License = await FileIO.ReadTextAsync(
-               await StorageFile.GetFileFromApplicationUriAsync(
-                   new Uri("ms-appx:///LICENSE")
-               )
-           );
+                await StorageFile.GetFileFromApplicationUriAsync(
+                    new Uri("ms-appx:///LICENSE")
+                )
+            );
 
         const string tmpToken = "__@$";
 
