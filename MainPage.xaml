@@ -41,6 +41,7 @@
                     Text="You are a Failure!" />
             </StackPanel>
         </Border>
+
         <muxc:NavigationView
             x:Name="NavigationViewControl"
             DisplayModeChanged="NavigationViewControl_DisplayModeChanged"

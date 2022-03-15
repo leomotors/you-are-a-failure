@@ -8,6 +8,7 @@
     mc:Ignorable="d">
 
     <StackPanel
+        x:Name="MainStackPanel"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         Style="{StaticResource Page}">
@@ -28,6 +29,12 @@
             x:Name="FailurePlayer"
             MaxWidth="1200"
             AutoPlay="True" />
+
+        <TextBlock
+            x:Name="FooterTextBlock"
+            Padding="0,20,0,20"
+            Style="{StaticResource TextXL}"
+            TextAlignment="Center" />
 
     </StackPanel>
 </Page>

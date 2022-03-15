@@ -9,5 +9,6 @@
 
     <StackPanel Style="{StaticResource Page}">
         <TextBlock Style="{StaticResource PageHeader}">Statistics</TextBlock>
+        <TextBlock Style="{StaticResource Header2}">Coming Soon</TextBlock>
     </StackPanel>
 </Page>

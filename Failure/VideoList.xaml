@@ -10,6 +10,20 @@
     <StackPanel Style="{StaticResource Page}">
         <TextBlock Style="{StaticResource PageHeader}">Motivational Video List</TextBlock>
 
-        <ListView x:Name="VideoListView" />
+        <ListView
+            x:Name="VideoListView"
+            Margin="0,30,0,0"
+            Padding="10,20,10,20"
+            Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+            CornerRadius="8"
+            IsItemClickEnabled="True"
+            ItemClick="VideoListView_ItemClick"
+            SelectionMode="None">
+            <ListView.Resources>
+                <Style BasedOn="{StaticResource TextXL}" TargetType="TextBlock">
+                    <Setter Property="Padding" Value="10" />
+                </Style>
+            </ListView.Resources>
+        </ListView>
     </StackPanel>
 </Page>

@@ -25,7 +25,7 @@ public sealed partial class Settings : Page
 {
     public Settings()
     {
-        InitializeComponent();
+        this.InitializeComponent();
 
         // Copied from rabbit-house-menu which is from microsoft/Xaml-Controls-Gallery
         var version = Windows.ApplicationModel.Package.Current.Id.Version;

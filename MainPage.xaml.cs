@@ -27,7 +27,7 @@ public sealed partial class MainPage : Page
 {
     public MainPage()
     {
-        InitializeComponent();
+        this.InitializeComponent();
 
         // https://docs.microsoft.com/en-us/windows/apps/design/style/mica#title-bar-code-behind
 
@@ -46,19 +46,24 @@ public sealed partial class MainPage : Page
 
         // Register a handler for when the size of the overlaid caption control changes.
         // For example, when the app moves to a screen with a different DPI.
-        coreTitleBar.LayoutMetricsChanged += CoreTitleBar_LayoutMetricsChanged;
+        coreTitleBar.LayoutMetricsChanged += (sender, args) =>
+        {
+            UpdateTitleBarLayout(sender);
+        };
 
         // Register a handler for when the title bar visibility changes.
         // For example, when the title bar is invoked in full screen mode.
-        coreTitleBar.IsVisibleChanged += CoreTitleBar_IsVisibleChanged;
+        coreTitleBar.IsVisibleChanged += (sender, args) =>
+        {
+            AppTitleBar.Visibility = sender.IsVisible
+                                        ? Visibility.Visible
+                                        : Visibility.Collapsed;
+        };
 
         //Register a handler for when the window changes focus
         Window.Current.Activated += Current_Activated;
-    }
 
-    private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
-    {
-        UpdateTitleBarLayout(sender);
+        Failure.VideoList.OnListViewClickHandler = OnVideoListSelected;
     }
 
     private void UpdateTitleBarLayout(CoreApplicationViewTitleBar coreTitleBar)
@@ -69,18 +74,6 @@ public sealed partial class MainPage : Page
         // Ensure the custom title bar does not overlap window caption controls
         Thickness currMargin = AppTitleBar.Margin;
         AppTitleBar.Margin = new Thickness(currMargin.Left, currMargin.Top, coreTitleBar.SystemOverlayRightInset, currMargin.Bottom);
-    }
-
-    private void CoreTitleBar_IsVisibleChanged(CoreApplicationViewTitleBar sender, object args)
-    {
-        if (sender.IsVisible)
-        {
-            AppTitleBar.Visibility = Visibility.Visible;
-        }
-        else
-        {
-            AppTitleBar.Visibility = Visibility.Collapsed;
-        }
     }
 
     // Update the TitleBar based on the inactive/active state of the app
@@ -131,7 +124,7 @@ public sealed partial class MainPage : Page
 
     private void NavigationView_Loaded(object sender, RoutedEventArgs e)
     {
-        FailureFrame.Navigate(typeof(Failure.VideoList));
+        (sender as MUXC.NavigationView).SelectedItem = MotivationalVideo;
 
         foreach (var video in Classes.Steven.VideoList)
         {
@@ -180,6 +173,18 @@ public sealed partial class MainPage : Page
             if (selectedVideo is null) return;
 
             FailureFrame.Navigate(typeof(Failure.TortureChamber), selectedVideo);
+        }
+    }
+
+    public void OnVideoListSelected(string selected)
+    {
+        foreach (MUXC.NavigationViewItem menu in MotivationalVideo.MenuItems)
+        {
+            if ((menu.Content as string) == selected)
+            {
+                NavigationViewControl.SelectedItem = menu;
+                return;
+            }
         }
     }
 }

@@ -15,21 +15,40 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace you_are_a_failure.Failure
+namespace you_are_a_failure.Failure;
+
+/// <summary>
+/// An empty page that can be used on its own or navigated to within a Frame.
+/// </summary>
+public sealed partial class VideoList : Page
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class VideoList : Page
+    public static Action<string> OnListViewClickHandler { get; set; }
+
+    public VideoList()
     {
-        public VideoList()
+        this.InitializeComponent();
+    }
+
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        foreach (var video in Classes.Steven.VideoList)
         {
-            this.InitializeComponent();
+            VideoListView.Items.Add(new TextBlock
+            {
+                Text = video.FileName
+            });
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        base.OnNavigatedTo(e);
+    }
+
+    private void VideoListView_ItemClick(object sender, ItemClickEventArgs e)
+    {
+        if (e.ClickedItem is not TextBlock clicked) return;
+
+        if (OnListViewClickHandler is not null)
         {
-            base.OnNavigatedTo(e);
+            OnListViewClickHandler(clicked.Text);
         }
     }
 }
