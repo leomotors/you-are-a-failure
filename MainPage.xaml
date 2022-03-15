@@ -47,10 +47,14 @@
             Loaded="NavigationView_Loaded"
             SelectionChanged="NavigationView_SelectionChanged">
             <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem x:Name="Failure" Content="Failure">
+
+                <muxc:NavigationViewItem x:Name="MotivationalVideo">
+                    Motivational Video
                     <muxc:NavigationViewItem.Icon>
                         <muxc:ImageIcon Source="ms-appx:///Assets/Failure/Failure.gif" />
                     </muxc:NavigationViewItem.Icon>
+
+                    <muxc:NavigationViewItem.MenuItems />
                 </muxc:NavigationViewItem>
                 <muxc:NavigationViewItem
                     x:Name="Statistics"

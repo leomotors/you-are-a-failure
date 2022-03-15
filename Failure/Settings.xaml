@@ -7,7 +7,28 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel>
+    <StackPanel Style="{StaticResource Page}">
         <TextBlock Style="{StaticResource PageHeader}">Settings</TextBlock>
+
+        <TextBlock Style="{StaticResource Header2}">Credits</TextBlock>
+        <StackPanel x:Name="CreditsPanel">
+            <HyperlinkButton NavigateUri="https://www.youtube.com/c/StevenHe">
+                Steven He's YouTube Channel
+            </HyperlinkButton>
+        </StackPanel>
+
+        <TextBlock Style="{StaticResource Header2}">About App</TextBlock>
+        <StackPanel>
+            <TextBlock
+                x:Name="AppVersion"
+                Padding="0,0,0,10"
+                Style="{StaticResource TextLarge}" />
+            <HyperlinkButton NavigateUri="https://github.com/Leomotors/you-are-a-failure">
+                GitHub Project
+            </HyperlinkButton>
+            <HyperlinkButton Click="ViewLicense_Click">
+                View License
+            </HyperlinkButton>
+        </StackPanel>
     </StackPanel>
 </Page>

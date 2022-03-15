@@ -7,22 +7,27 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+    <StackPanel
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Style="{StaticResource Page}">
         <TextBlock
             Margin="0,20,0,20"
             HorizontalAlignment="Center"
             FontSize="48">
             <TextBlock.Inlines>
                 <Run FontWeight="SemiBold">You are a</Run>
-                <Run FontStyle="Italic" FontWeight="Bold">Failure</Run>
+                <Run
+                    x:Name="ItalicBoldBoi"
+                    FontStyle="Italic"
+                    FontWeight="Bold" />
             </TextBlock.Inlines>
         </TextBlock>
 
         <MediaPlayerElement
             x:Name="FailurePlayer"
             MaxWidth="1200"
-            AreTransportControlsEnabled="True"
-            Source="ms-appx:///Assets/Failure/Failure.mp4" />
+            AutoPlay="True" />
 
     </StackPanel>
 </Page>

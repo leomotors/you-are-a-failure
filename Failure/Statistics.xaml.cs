@@ -15,16 +15,15 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace you_are_a_failure.Failure
+namespace you_are_a_failure.Failure;
+
+/// <summary>
+/// An empty page that can be used on its own or navigated to within a Frame.
+/// </summary>
+public sealed partial class Statistics : Page
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class Statistics : Page
+    public Statistics()
     {
-        public Statistics()
-        {
-            this.InitializeComponent();
-        }
+        this.InitializeComponent();
     }
 }

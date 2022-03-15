@@ -131,7 +131,15 @@ public sealed partial class MainPage : Page
 
     private void NavigationView_Loaded(object sender, RoutedEventArgs e)
     {
-        FailureFrame.Navigate(typeof(Failure.TortureChamber));
+        FailureFrame.Navigate(typeof(Failure.VideoList));
+
+        foreach (var video in Classes.Steven.VideoList)
+        {
+            MotivationalVideo.MenuItems.Add(new MUXC.NavigationViewItem
+            {
+                Content = video.FileName
+            });
+        }
     }
 
     private void NavigationView_SelectionChanged(MUXC.NavigationView sender, MUXC.NavigationViewSelectionChangedEventArgs args)
@@ -144,15 +152,34 @@ public sealed partial class MainPage : Page
 
         var selected = args.SelectedItem as MUXC.NavigationViewItem;
 
-        if (selected == Failure)
+        if (selected == MotivationalVideo)
         {
-            FailureFrame.Navigate(typeof(Failure.TortureChamber));
+            FailureFrame.Navigate(typeof(Failure.VideoList));
             return;
         }
         else if (selected == Statistics)
         {
             FailureFrame.Navigate(typeof(Failure.Statistics));
             return;
+        }
+        else
+        {
+            if (selected.Content is not string videoName) return;
+
+            Classes.Video selectedVideo = null;
+
+            foreach (var video in Classes.Steven.VideoList)
+            {
+                if (video.FileName == videoName)
+                {
+                    selectedVideo = video;
+                    break;
+                }
+            }
+
+            if (selectedVideo is null) return;
+
+            FailureFrame.Navigate(typeof(Failure.TortureChamber), selectedVideo);
         }
     }
 }
