@@ -81,14 +81,14 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
-"@sveltejs/adapter-static@1.0.0-next.29":
+"@sveltejs/adapter-static@^1.0.0-next.29":
   version "1.0.0-next.29"
   resolved "https://registry.yarnpkg.com/@sveltejs/adapter-static/-/adapter-static-1.0.0-next.29.tgz#bdc5df5c174a2b2405622eca1817cf6850869dc6"
   integrity sha512-0hjGnfT3BRyoHnzJ2w0/xL+xICRpKneDTm45ZzggiRrc0r71WJfF6toGeg8N4QUQnj8EJ3Itm453gsS1kt7VUQ==
   dependencies:
     tiny-glob "^0.2.9"
 
-"@sveltejs/kit@1.0.0-next.297":
+"@sveltejs/kit@^1.0.0-next.297":
   version "1.0.0-next.297"
   resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.297.tgz#9051b9dab9e2185f9555ef4c3c36499031381c2f"
   integrity sha512-u2fQDMzPxz8gKreYRp7AYdWzlq0kdFeA/XAdKnsvvBirn2tAvo6OTJgIlMaKkflsQlUViDLWBLa/Kuw3bNYnPg==

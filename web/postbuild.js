@@ -20,7 +20,7 @@ async function GHPagesSvkMahou(fileName) {
   console.log(`Done with ${fileName}!`);
 }
 
-const fileList = globbySync("build/**/*.html");
+const fileList = globbySync("build/**/*.{html,js}");
 
 console.log(`Items: ${fileList}`);
 
