@@ -13,6 +13,7 @@
 
         <CalendarView
             x:Name="FailureCalendar"
+            CalendarViewDayItemChanging="FailureCalendar_DayItemChanging"
             CornerRadius="12"
             IsGroupLabelVisible="False"
             IsOutOfScopeEnabled="True"

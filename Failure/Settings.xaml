@@ -5,10 +5,45 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:you_are_a_failure.Failure"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
 
     <StackPanel Style="{StaticResource Page}">
-        <TextBlock Style="{StaticResource PageHeader}">Settings</TextBlock>
+        <TextBlock Style="{StaticResource PageHeader}">
+            Settings &amp; About
+        </TextBlock>
+
+        <TextBlock Style="{StaticResource Header2}">App Theme</TextBlock>
+        <Border
+            x:Name="ThemeChangeAlertBorder"
+            Margin="0,20,0,20"
+            Background="{x:Bind BackgroundYellow}"
+            CornerRadius="6">
+            <StackPanel
+                x:Name="ThemeChangeAlert"
+                Padding="20"
+                Orientation="Horizontal"
+                Visibility="Collapsed">
+                <FontIcon
+                    FontFamily="Segoe MDL2 Assets"
+                    Foreground="{x:Bind ForegroundYellow}"
+                    Glyph="&#xF167;" />
+                <TextBlock
+                    Margin="10,0,0,0"
+                    FontSize="16"
+                    FontWeight="Medium">
+                    You need to restart the app to apply the changes
+                </TextBlock>
+            </StackPanel>
+        </Border>
+        <muxc:RadioButtons
+            Loaded="ThemeSelector_Loaded"
+            SelectedIndex="0"
+            SelectionChanged="Theme_SelectionChanged">
+            <x:String>Light</x:String>
+            <x:String>Dark</x:String>
+            <x:String>Use System Settings</x:String>
+        </muxc:RadioButtons>
 
         <TextBlock Style="{StaticResource Header2}">Credits</TextBlock>
         <StackPanel x:Name="CreditsPanel">

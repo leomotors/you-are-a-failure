@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
+using Windows.UI;
+using Windows.UI.Text;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,6 +25,20 @@ namespace you_are_a_failure.Failure;
 /// </summary>
 public sealed partial class Settings : Page
 {
+    // From Alert Box at System > Display > Custom Scaling
+    private readonly SolidColorBrush BackgroundYellow = new(
+            App.IsLightTheme
+                ? Color.FromArgb(255, 255, 244, 206)
+                : Color.FromArgb(255, 67, 53, 25)
+        );
+
+    // From Alert Box at System > Display > Custom Scaling
+    private readonly SolidColorBrush ForegroundYellow = new(
+            App.IsLightTheme
+                ? Color.FromArgb(255, 157, 93, 0)
+                : Color.FromArgb(255, 252, 225, 0)
+        );
+
     public Settings()
     {
         this.InitializeComponent();
@@ -73,5 +89,28 @@ public sealed partial class Settings : Page
         };
 
         await dialog.ShowAsync();
+    }
+
+    private void ThemeSelector_Loaded(object sender, RoutedEventArgs e)
+    {
+        (sender as MUXC.RadioButtons).SelectedIndex = App.Current.CurrentTheme;
+    }
+
+    private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        var buttons = sender as MUXC.RadioButtons;
+
+        ApplicationData.Current.LocalSettings.Values["themeSetting"] =
+            buttons.SelectedIndex;
+
+        ThemeChangeAlert.Visibility =
+            App.Current.CurrentTheme == buttons.SelectedIndex
+                ? Visibility.Collapsed
+                : Visibility.Visible;
+
+        ThemeChangeAlertBorder.Margin =
+            App.Current.CurrentTheme == buttons.SelectedIndex
+                ? new Thickness(0)
+                : new Thickness(0, 10, 0, 10);
     }
 }

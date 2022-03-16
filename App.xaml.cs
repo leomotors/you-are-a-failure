@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Storage;
 
 namespace you_are_a_failure;
 
@@ -24,6 +25,19 @@ namespace you_are_a_failure;
 /// </summary>
 sealed partial class App : Application
 {
+    public readonly int CurrentTheme =
+        ApplicationData.Current.LocalSettings.Values["themeSetting"] as int? ?? 2;
+
+    public static new App Current
+    {
+        get => Application.Current as App;
+    }
+
+    public static bool IsLightTheme
+    {
+        get => Application.Current.RequestedTheme == ApplicationTheme.Light;
+    }
+
     /// <summary>
     /// Initializes the singleton application object.  This is the first line of authored code
     /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -32,6 +46,18 @@ sealed partial class App : Application
     {
         this.InitializeComponent();
         this.Suspending += OnSuspending;
+
+        // Set App Theme based on Settings
+        switch (CurrentTheme)
+        {
+            case 0:
+                RequestedTheme = ApplicationTheme.Light;
+                break;
+
+            case 1:
+                RequestedTheme = ApplicationTheme.Dark;
+                break;
+        }
     }
 
     /// <summary>
