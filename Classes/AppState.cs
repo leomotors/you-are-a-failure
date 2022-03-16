@@ -35,10 +35,7 @@ static public class AppState
     {
         bool result = true;
 
-        for (int i = 0; i < Watched.Length; i++)
-        {
-            result &= Watched[i];
-        }
+        Array.ForEach(Watched, w => result &= w);
 
         return result;
     }

@@ -34,14 +34,16 @@ public sealed partial class Settings : Page
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
-        foreach (var video in Classes.Steven.VideoList)
-        {
-            CreditsPanel.Children.Add(new HyperlinkButton
-            {
-                NavigateUri = new Uri(video.YoutubeLink),
-                Content = "Compilation Video: " + video.FileName,
-            });
-        }
+        Array.ForEach(
+            Classes.Steven.VideoList,
+            video => CreditsPanel.Children.Add(
+                new HyperlinkButton
+                {
+                    NavigateUri = new Uri(video.YoutubeLink),
+                    Content = "Compilation Video: " + video.FileName,
+                }
+            )
+        );
 
         base.OnNavigatedTo(e);
     }

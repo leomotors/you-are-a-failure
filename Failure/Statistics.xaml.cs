@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.System.UserProfile;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,5 +26,18 @@ public sealed partial class Statistics : Page
     public Statistics()
     {
         this.InitializeComponent();
+    }
+
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        WatchStatus.Text =
+            Classes.AppState.IsAllWatched()
+                ? "You have completed your treatment for today!"
+                : "Go back and watch the video!";
+
+        FailureCalendar.FirstDayOfWeek = GlobalizationPreferences.WeekStartsOn;
+        FailureCalendar.CalendarIdentifier = GlobalizationPreferences.Calendars[0];
+
+        base.OnNavigatedTo(e);
     }
 }

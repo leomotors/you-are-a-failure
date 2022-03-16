@@ -31,13 +31,10 @@ public sealed partial class VideoList : Page
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
-        foreach (var video in Classes.Steven.VideoList)
-        {
-            VideoListView.Items.Add(new TextBlock
-            {
-                Text = video.FileName
-            });
-        }
+        Array.ForEach(
+            Classes.Steven.VideoList,
+            video => VideoListView.Items.Add(new TextBlock { Text = video.FileName })
+        );
 
         base.OnNavigatedTo(e);
     }

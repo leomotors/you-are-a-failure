@@ -79,8 +79,10 @@ public sealed partial class MainPage : Page
     // Update the TitleBar based on the inactive/active state of the app
     private void Current_Activated(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
     {
-        SolidColorBrush defaultForegroundBrush = (SolidColorBrush)Application.Current.Resources["TextFillColorPrimaryBrush"];
-        SolidColorBrush inactiveForegroundBrush = (SolidColorBrush)Application.Current.Resources["TextFillColorDisabledBrush"];
+        SolidColorBrush defaultForegroundBrush =
+            (SolidColorBrush)Application.Current.Resources["TextFillColorPrimaryBrush"];
+        SolidColorBrush inactiveForegroundBrush =
+            (SolidColorBrush)Application.Current.Resources["TextFillColorDisabledBrush"];
 
         if (e.WindowActivationState == Windows.UI.Core.CoreWindowActivationState.Deactivated)
         {
@@ -124,7 +126,8 @@ public sealed partial class MainPage : Page
 
     private void NavigationView_Loaded(object sender, RoutedEventArgs e)
     {
-        (sender as MUXC.NavigationView).SelectedItem = MotivationalVideo;
+        NavigationViewControl.SelectedItem = MotivationalVideo;
+        MotivationalVideo.IsExpanded = true;
 
         foreach (var video in Classes.Steven.VideoList)
         {
@@ -159,18 +162,8 @@ public sealed partial class MainPage : Page
         {
             if (selected.Content is not string videoName) return;
 
-            Classes.Video selectedVideo = null;
-
-            foreach (var video in Classes.Steven.VideoList)
-            {
-                if (video.FileName == videoName)
-                {
-                    selectedVideo = video;
-                    break;
-                }
-            }
-
-            if (selectedVideo is null) return;
+            Classes.Video selectedVideo =
+                Classes.Steven.VideoList.Where(vid => vid.FileName == videoName).First();
 
             FailureFrame.Navigate(typeof(Failure.TortureChamber), selectedVideo);
         }
@@ -178,13 +171,12 @@ public sealed partial class MainPage : Page
 
     public void OnVideoListSelected(string selected)
     {
-        foreach (MUXC.NavigationViewItem menu in MotivationalVideo.MenuItems)
-        {
-            if ((menu.Content as string) == selected)
-            {
-                NavigationViewControl.SelectedItem = menu;
-                return;
-            }
-        }
+        MotivationalVideo.IsExpanded = true;
+
+        NavigationViewControl.SelectedItem =
+            MotivationalVideo.MenuItems
+            .Where(
+                menu => (menu as MUXC.NavigationViewItem).Content as string == selected
+            ).First();
     }
 }
