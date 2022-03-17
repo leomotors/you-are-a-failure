@@ -44,10 +44,10 @@ public sealed partial class Statistics : Page
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
-        WatchStatus.Text =
-            Classes.AppState.IsAllWatched()
-                ? "You have completed your treatment for today!"
-                : "Go back and watch the video!";
+        WatchStatus.Text = "Today Status: "
+            + (Classes.AppState.IsAllWatched()
+                ? "Treatment Completed!"
+                : "Go back and watch the video!");
 
         FailureCalendar.FirstDayOfWeek = GlobalizationPreferences.WeekStartsOn;
         FailureCalendar.CalendarIdentifier = GlobalizationPreferences.Calendars[0];
@@ -56,13 +56,13 @@ public sealed partial class Statistics : Page
     }
 
     // https://blog.mzikmund.com/2020/07/highlighting-dates-in-uwp-calendarview/#comments
-    private static void HighlightDay(CalendarViewDayItem day, Color color)
+    private void HighlightDay(CalendarViewDayItem day, Color color)
     {
         day.Background = new SolidColorBrush(color);
     }
 
-    static readonly Color AkiColor =
-        App.IsLightTheme
+    private readonly Color AkiColor =
+        App.Current.IsLightTheme
             ? Color.FromArgb(255, 111, 159, 216)
             : Color.FromArgb(255, 36, 44, 80);
 
@@ -71,13 +71,10 @@ public sealed partial class Statistics : Page
         var dateOffset = args.Item.Date;
         DateTime date = new(dateOffset.Year, dateOffset.Month, dateOffset.Day);
 
-        if (WatchedDate.Contains(date) && date != Today)
-        {
-            HighlightDay(args.Item, AkiColor);
-        }
-        else
-        {
-            HighlightDay(args.Item, Colors.Transparent);
-        }
+        var color = WatchedDate.Contains(date) && date != Today
+            ? AkiColor
+            : Colors.Transparent;
+
+        HighlightDay(args.Item, color);
     }
 }

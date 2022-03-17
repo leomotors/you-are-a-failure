@@ -1,0 +1,46 @@
+﻿<Page
+    x:Class="you_are_a_failure.Failure.WelcomeFailure"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:you_are_a_failure.Failure"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Padding" Value="15,10" />
+            <Setter Property="Margin" Value="0,10" />
+            <Setter Property="CornerRadius" Value="6" />
+        </Style>
+    </Page.Resources>
+
+    <StackPanel Style="{StaticResource PageLayout}">
+
+        <TextBlock Margin="0,0,0,30" Style="{StaticResource PageHeader}">
+            Welcome, Failure!
+        </TextBlock>
+
+        <TextBlock Style="{StaticResource ParagraphLarge}">
+            Look like you are having a bad day. You just fail something
+            and that things make you feel very disappointed.
+        </TextBlock>
+
+        <TextBlock Style="{StaticResource ParagraphLarge}">
+            <TextBlock.Inlines>
+                <Run>But don't worry, we have a unique treatment method to keep you motivated.</Run>
+                <Run FontWeight="Bold">&quot;Insult&quot;</Run>
+                ,<Run>by delivering maximum</Run>
+                <Run FontStyle="Italic" FontWeight="Bold">Emotional Damage</Run>
+                .<Run>We can snap your fire back.</Run>
+            </TextBlock.Inlines>
+        </TextBlock>
+
+        <StackPanel Margin="0,30">
+            <Button Click="GoWatch_Click">Go Watch Motivational Video</Button>
+            <Button Click="SeeStats_Click">See Your Statistics</Button>
+        </StackPanel>
+
+    </StackPanel>
+</Page>

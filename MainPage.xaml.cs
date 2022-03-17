@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -60,10 +61,17 @@ public sealed partial class MainPage : Page
                                         : Visibility.Collapsed;
         };
 
-        //Register a handler for when the window changes focus
+        // Register a handler for when the window changes focus
         Window.Current.Activated += Current_Activated;
 
         Failure.VideoList.OnListViewClickHandler = OnVideoListSelected;
+
+        // Classes.AppState.OnStateChanged = OnWatchedUpdate;
+        Classes.AppState.OnStateChanged = async () =>
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, OnWatchedUpdate);
+
+        // Register a handler for when a page want to browse to other page
+        Failure.WelcomeFailure.Navigator = RemoteNavigation;
     }
 
     private void UpdateTitleBarLayout(CoreApplicationViewTitleBar coreTitleBar)
@@ -126,8 +134,7 @@ public sealed partial class MainPage : Page
 
     private void NavigationView_Loaded(object sender, RoutedEventArgs e)
     {
-        NavigationViewControl.SelectedItem = MotivationalVideo;
-        MotivationalVideo.IsExpanded = true;
+        NavigationViewControl.SelectedItem = Welcome;
 
         foreach (var video in Classes.Steven.VideoList)
         {
@@ -135,6 +142,18 @@ public sealed partial class MainPage : Page
             {
                 Content = video.FileName
             });
+        }
+    }
+
+    private void OnWatchedUpdate()
+    {
+        for (int i = 0; i < Classes.Steven.VideoList.Length; i++)
+        {
+            var element = MotivationalVideo.MenuItems[i] as MUXC.NavigationViewItem;
+            var video = Classes.Steven.VideoList[i];
+
+            element.Content = video.FileName
+                + (Classes.AppState.Watched[i] ? " ✅" : "");
         }
     }
 
@@ -148,22 +167,26 @@ public sealed partial class MainPage : Page
 
         var selected = args.SelectedItem as MUXC.NavigationViewItem;
 
-        if (selected == MotivationalVideo)
+        if (selected == Welcome)
+        {
+            FailureFrame.Navigate(typeof(Failure.WelcomeFailure));
+        }
+        else if (selected == MotivationalVideo)
         {
             FailureFrame.Navigate(typeof(Failure.VideoList));
-            return;
         }
         else if (selected == Statistics)
         {
             FailureFrame.Navigate(typeof(Failure.Statistics));
-            return;
         }
         else
         {
             if (selected.Content is not string videoName) return;
 
             Classes.Video selectedVideo =
-                Classes.Steven.VideoList.Where(vid => vid.FileName == videoName).First();
+                Classes.Steven.VideoList.Where(
+                    vid => vid.FileName == videoName.Split(" ")[0]
+                ).First();
 
             FailureFrame.Navigate(typeof(Failure.TortureChamber), selectedVideo);
         }
@@ -176,7 +199,23 @@ public sealed partial class MainPage : Page
         NavigationViewControl.SelectedItem =
             MotivationalVideo.MenuItems
             .Where(
-                menu => (menu as MUXC.NavigationViewItem).Content as string == selected
+                menu =>
+                    ((menu as MUXC.NavigationViewItem).Content as string)
+                        .Split(" ")[0] == selected
             ).First();
+    }
+
+    public void RemoteNavigation(Classes.NavigationTarget target)
+    {
+        switch (target)
+        {
+            case Classes.NavigationTarget.MotivationalVideo:
+                MotivationalVideo.IsSelected = true;
+                break;
+
+            case Classes.NavigationTarget.Statistics:
+                Statistics.IsSelected = true;
+                break;
+        }
     }
 }

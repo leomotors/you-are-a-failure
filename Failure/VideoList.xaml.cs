@@ -31,10 +31,15 @@ public sealed partial class VideoList : Page
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
-        Array.ForEach(
-            Classes.Steven.VideoList,
-            video => VideoListView.Items.Add(new TextBlock { Text = video.FileName })
-        );
+        for (int i = 0; i < Classes.Steven.VideoList.Length; i++)
+        {
+            VideoListView.Items.Add(new TextBlock
+            {
+                Text = Classes.Steven.VideoList[i].FileName
+                        + (Classes.AppState.Watched[i] ? " ✅" : "")
+            }
+            );
+        }
 
         base.OnNavigatedTo(e);
     }
@@ -45,7 +50,7 @@ public sealed partial class VideoList : Page
 
         if (OnListViewClickHandler is not null)
         {
-            OnListViewClickHandler(clicked.Text);
+            OnListViewClickHandler(clicked.Text.Split(" ")[0]);
         }
     }
 }

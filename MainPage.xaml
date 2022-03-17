@@ -47,23 +47,33 @@
             DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
             Loaded="NavigationView_Loaded"
             SelectionChanged="NavigationView_SelectionChanged">
+
             <muxc:NavigationView.MenuItems>
+
+                <muxc:NavigationViewItem x:Name="Welcome" Icon="Home">
+                    Welcome, Failure!
+                </muxc:NavigationViewItem>
 
                 <muxc:NavigationViewItem x:Name="MotivationalVideo">
                     Motivational Video
                     <muxc:NavigationViewItem.Icon>
                         <muxc:ImageIcon Source="ms-appx:///Assets/Failure/Failure.gif" />
                     </muxc:NavigationViewItem.Icon>
-
                     <muxc:NavigationViewItem.MenuItems />
                 </muxc:NavigationViewItem>
+
                 <muxc:NavigationViewItem
                     x:Name="Statistics"
                     Content="Statistics"
                     Icon="Calendar" />
+
             </muxc:NavigationView.MenuItems>
 
-            <Frame x:Name="FailureFrame" />
+            <!--  Page Layout  -->
+            <ScrollViewer Margin="0,0,10,35">
+                <Frame x:Name="FailureFrame" />
+            </ScrollViewer>
+
         </muxc:NavigationView>
     </Grid>
 </Page>

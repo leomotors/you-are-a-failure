@@ -28,14 +28,12 @@ sealed partial class App : Application
     public readonly int CurrentTheme =
         ApplicationData.Current.LocalSettings.Values["themeSetting"] as int? ?? 2;
 
+    public readonly bool IsLightTheme =
+        Application.Current.RequestedTheme == ApplicationTheme.Light;
+
     public static new App Current
     {
         get => Application.Current as App;
-    }
-
-    public static bool IsLightTheme
-    {
-        get => Application.Current.RequestedTheme == ApplicationTheme.Light;
     }
 
     /// <summary>

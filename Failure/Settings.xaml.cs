@@ -27,14 +27,14 @@ public sealed partial class Settings : Page
 {
     // From Alert Box at System > Display > Custom Scaling
     private readonly SolidColorBrush BackgroundYellow = new(
-            App.IsLightTheme
+            App.Current.IsLightTheme
                 ? Color.FromArgb(255, 255, 244, 206)
                 : Color.FromArgb(255, 67, 53, 25)
         );
 
     // From Alert Box at System > Display > Custom Scaling
     private readonly SolidColorBrush ForegroundYellow = new(
-            App.IsLightTheme
+            App.Current.IsLightTheme
                 ? Color.FromArgb(255, 157, 93, 0)
                 : Color.FromArgb(255, 252, 225, 0)
         );
@@ -43,9 +43,17 @@ public sealed partial class Settings : Page
     {
         this.InitializeComponent();
 
+#if DEBUG
+        bool IsDebug = true;
+#else
+        bool IsDebug = false;
+#endif
+
         // Copied from rabbit-house-menu which is from microsoft/Xaml-Controls-Gallery
         var version = Windows.ApplicationModel.Package.Current.Id.Version;
-        AppVersion.Text = $"Version: {version.Major}.{version.Minor} Build {version.Build}.{version.Revision}";
+        AppVersion.Text =
+            $"Version: {version.Major}.{version.Minor} Build {version.Build}.{version.Revision}"
+            + (IsDebug ? " (DEBUG)" : "");
     }
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -85,7 +93,7 @@ public sealed partial class Settings : Page
                         .Replace("\n\n", tmpToken)
                         .Replace("\n", " ")
                         .Replace(tmpToken, "\n\n"),
-            CloseButtonText = "Close"
+            CloseButtonText = "Close",
         };
 
         await dialog.ShowAsync();
@@ -103,14 +111,12 @@ public sealed partial class Settings : Page
         ApplicationData.Current.LocalSettings.Values["themeSetting"] =
             buttons.SelectedIndex;
 
+        var showAlert = App.Current.CurrentTheme == buttons.SelectedIndex;
+
         ThemeChangeAlert.Visibility =
-            App.Current.CurrentTheme == buttons.SelectedIndex
-                ? Visibility.Collapsed
-                : Visibility.Visible;
+            showAlert ? Visibility.Collapsed : Visibility.Visible;
 
         ThemeChangeAlertBorder.Margin =
-            App.Current.CurrentTheme == buttons.SelectedIndex
-                ? new Thickness(0)
-                : new Thickness(0, 10, 0, 10);
+            showAlert ? new Thickness(0) : new Thickness(0, 10, 0, 10);
     }
 }

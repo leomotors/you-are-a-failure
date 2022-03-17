@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Style="{StaticResource Page}">
+    <StackPanel Margin="0,0,10,20" Style="{StaticResource PageLayout}">
         <TextBlock Style="{StaticResource PageHeader}">Statistics</TextBlock>
         <TextBlock x:Name="WatchStatus" Style="{StaticResource Header2}" />
 

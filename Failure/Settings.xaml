@@ -8,7 +8,16 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
 
-    <StackPanel Style="{StaticResource Page}">
+    <Page.Resources>
+        <Style TargetType="HyperlinkButton">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="Margin" Value="0,2" />
+            <Setter Property="CornerRadius" Value="4" />
+        </Style>
+    </Page.Resources>
+
+    <StackPanel Style="{StaticResource PageLayout}">
         <TextBlock Style="{StaticResource PageHeader}">
             Settings &amp; About
         </TextBlock>
@@ -40,12 +49,20 @@
             Loaded="ThemeSelector_Loaded"
             SelectedIndex="0"
             SelectionChanged="Theme_SelectionChanged">
-            <x:String>Light</x:String>
-            <x:String>Dark</x:String>
-            <x:String>Use System Settings</x:String>
+            <muxc:RadioButtons.Resources>
+                <Style TargetType="RadioButton">
+                    <Setter Property="FontSize" Value="16" />
+                    <Setter Property="Padding" Value="8,4,0,0" />
+                </Style>
+            </muxc:RadioButtons.Resources>
+            <RadioButton>Light 🔥</RadioButton>
+            <RadioButton>Dark &#x1f31a;</RadioButton>
+            <RadioButton>Use System Settings ⚙️</RadioButton>
         </muxc:RadioButtons>
 
-        <TextBlock Style="{StaticResource Header2}">Credits</TextBlock>
+        <TextBlock Style="{StaticResource Header2}">
+            Credits &amp; Sauce
+        </TextBlock>
         <StackPanel x:Name="CreditsPanel">
             <HyperlinkButton NavigateUri="https://www.youtube.com/c/StevenHe">
                 Steven He's YouTube Channel
@@ -58,8 +75,12 @@
                 x:Name="AppVersion"
                 Padding="0,0,0,10"
                 Style="{StaticResource TextLarge}" />
+
             <HyperlinkButton NavigateUri="https://github.com/Leomotors/you-are-a-failure">
                 GitHub Project
+            </HyperlinkButton>
+            <HyperlinkButton NavigateUri="https://leomotors.github.io/you-are-a-failure/">
+                Project Site (GitHub Pages)
             </HyperlinkButton>
             <HyperlinkButton Click="ViewLicense_Click">
                 View License

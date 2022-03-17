@@ -130,6 +130,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\AppState.cs" />
+    <Compile Include="Classes\NavigationTarget.cs" />
     <Compile Include="Classes\Steven.cs" />
     <Compile Include="Failure\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
@@ -142,6 +143,9 @@
     </Compile>
     <Compile Include="Failure\VideoList.xaml.cs">
       <DependentUpon>VideoList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Failure\WelcomeFailure.xaml.cs">
+      <DependentUpon>WelcomeFailure.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -227,6 +231,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Failure\VideoList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Failure\WelcomeFailure.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
