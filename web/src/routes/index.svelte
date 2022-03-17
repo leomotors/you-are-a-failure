@@ -119,7 +119,7 @@
 
   <div class="t-40" />
 
-  <h1>Introducing...</h1>
+  <h1 class="text-5xl sm:text-6xl">Introducing...</h1>
   <div class="t-5" />
   <h2>You are a Failure!</h2>
   <div class="t-10" />
