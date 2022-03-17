@@ -10,6 +10,8 @@
       "https://sportshub.cbsistatic.com/i/2022/01/11/e3a2e49e-5b45-48f7-a406-2a094aceb6b4/attack-on-titan-season-4-zeke-survives.jpg",
     "My Set Goal": "MySetGoal.webp",
     "Failure Failure": "FailureApp1.webp",
+    "Eren Manipulates Grisha":
+      "https://i.ytimg.com/vi/W2R4aOkT7cc/maxresdefault.jpg",
   };
 </script>
 

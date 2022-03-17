@@ -5,7 +5,7 @@
   const fr2 = "flex flex-row gap-2";
 </script>
 
-<main class="p-8 bg-white {ContentWidth} ">
+<main class="p-8 bg-white {ContentWidth}">
   <slot />
 </main>
 

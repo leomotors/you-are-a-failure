@@ -1,5 +1,6 @@
-<script>
+<script lang="ts">
   import Image from "$components/image.svelte";
+  import Youtube from "$components/youtube.svelte";
 </script>
 
 <main class="prose prose-2xl">
@@ -34,7 +35,7 @@
 
   <Image img="Levi to Erwin" />
 
-  <h4 class="text-slate-700 jp">「夢を諦めて死んでくれ」</h4>
+  <h4 class="quote-jp">夢を諦めて死んでくれ</h4>
 
   <div class="t-20" />
 
@@ -47,7 +48,7 @@
     We just have to keep moving forward, right?
     <span class="line-through">Eren.</span>
   </h3>
-  <h4 class="text-slate-700 jp">俺達は ただ 進むだけだよな エレン</h4>
+  <h4 class="quote-jp">俺達は ただ 進むだけだよな エレン</h4>
 
   <div class="t-30" />
   <p>
@@ -64,23 +65,15 @@
     To achieve that, you need <strong class="underline">motivation</strong>.
   </h3>
 
-  <div class="t-10" />
+  <div class="t-30" />
 
-  <iframe
-    width="640"
-    height="360"
-    src="https://www.youtube.com/embed/lO9K7VMFo2Y"
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen
-  />
+  <Youtube src="https://www.youtube.com/embed/lO9K7VMFo2Y" />
 
-  <p>
-    &ldquo;I have faced many failures in my life. Failure is viewed as a bad
-    thing, but it also gives me overwhelming motivation. I have grown because I
-    didn't wallow in misery with my past failures. The perseverance to keep
-    moving forward is the key to success.&rdquo;
+  <p class="quote">
+    I have faced many failures in my life. Failure is viewed as a bad thing, but
+    it also gives me overwhelming motivation. I have grown because I didn't
+    wallow in misery with my past failures. The perseverance to keep moving
+    forward is the key to success.
   </p>
 
   <p class="text-xl text-slate-700">
@@ -89,12 +82,39 @@
   </p>
   <div class="t-5" />
 
-  <h3>Nevertheless, I have set my goal.</h3>
+  <div class="t-20" />
+
+  <p class="quote">I refused to lose without a fight ...</p>
+
+  <p class="quote">
+    If I lose it all, slip and fall. I will never look away. If I lose it all,
+    lose it all, lose it all ...
+  </p>
+
+  <div class="t-10" />
+  <Image img="Eren Manipulates Grisha" />
+  <p class="quote-jp">進み続けるんだ 死んでも 死んだ後も</p>
+  <div class="t-10" />
+
+  <Youtube src="https://www.youtube.com/embed/bRUzZkGAWr4?start=11" />
+
+  <div class="t-10" />
+  <h4>
+    Listened to The Rumbling gives you Hype. But if you look closely, that is
+    not enough and you will eventually become <i>failure</i> again.
+  </h4>
+
+  <p>
+    I proudly present to you, The Asian Solution. <b>An Insult</b>, delivering
+    <i>emotional damage</i> that will push you forward
+  </p>
+
+  <h3>So, I have set my goal.</h3>
   <Image img="My Set Goal" width="960" />
 
   <div class="t-10" />
 
-  <h3>I will keep doing this to Warn me about my goal,</h3>
+  <h3>I will keep doing this to warn me about my goal,</h3>
   <h4>and I need assistance for that.</h4>
 
   <div class="t-40" />
@@ -106,19 +126,35 @@
   <Image img="Failure Failure" width="960" />
 
   <div class="t-10" />
-  <h3>An App that will help you on warning yourself.</h3>
+  <h3>
+    An App that will help you on keeping motivation and fire, with unique
+    technique from Asian Descendant
+  </h3>
   <p>
     Log in to this app daily, watch some <i>motivational videos</i> by Steven He,
-    try to keep streak as long as possible, keep doing this until you are admitted
-    at your dream school!
+    keep doing this until you accomplished your goal!
   </p>
-
-  <p>Work in Progress</p>
 </main>
 
 <style lang="postcss">
-  iframe {
-    @apply mx-auto;
+  .quote:before {
+    content: "\201C";
+  }
+
+  .quote:after {
+    content: "\201D";
+  }
+
+  .quote-jp {
+    @apply jp;
+  }
+
+  .quote-jp:before {
+    content: "「";
+  }
+
+  .quote-jp:after {
+    content: "」";
   }
 
   .jp {
