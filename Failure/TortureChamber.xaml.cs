@@ -62,7 +62,7 @@ public sealed partial class TortureChamber : Page
         FailurePlayer.MediaPlayer.Volume = param?.Volume ?? 1;
 
         FooterTextBlock.Text =
-            Classes.AppState.Watched[(int)Classes.AppState.GetIndex(VideoName)]
+            App.Current.State.Watched[(int)Classes.AppState.GetIndex(VideoName)]
                 ? "👍You have already completed this Treatment👍"
                 : "";
 
@@ -81,7 +81,7 @@ public sealed partial class TortureChamber : Page
         {
             if (FailuredStarted)
             {
-                Classes.AppState.AddWatched(VideoName);
+                App.Current.State.AddWatched(VideoName);
 
                 // https://social.msdn.microsoft.com/Forums/sqlserver/en-US/49426c88-fb6e-4894-b5ea-25d0f38b3358/uwpthe-application-called-an-interface-that-was-marshalled-for-a-different-thread?forum=wpdevelop
                 await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>

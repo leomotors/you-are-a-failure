@@ -28,13 +28,14 @@ sealed partial class App : Application
     public readonly int CurrentTheme =
         ApplicationData.Current.LocalSettings.Values["themeSetting"] as int? ?? 2;
 
-    public readonly bool IsLightTheme =
-        Application.Current.RequestedTheme == ApplicationTheme.Light;
+    public readonly bool IsLightTheme;
 
     public static new App Current
     {
         get => Application.Current as App;
     }
+
+    public readonly Classes.AppState State;
 
     /// <summary>
     /// Initializes the singleton application object.  This is the first line of authored code
@@ -44,6 +45,10 @@ sealed partial class App : Application
     {
         this.InitializeComponent();
         this.Suspending += OnSuspending;
+
+        State = new Classes.AppState();
+
+        IsLightTheme = Application.Current.RequestedTheme == ApplicationTheme.Light;
 
         // Set App Theme based on Settings
         switch (CurrentTheme)

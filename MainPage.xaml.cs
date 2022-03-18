@@ -67,7 +67,7 @@ public sealed partial class MainPage : Page
         Failure.VideoList.OnListViewClickHandler = OnVideoListSelected;
 
         // Classes.AppState.OnStateChanged = OnWatchedUpdate;
-        Classes.AppState.OnStateChanged = async () =>
+        App.Current.State.OnStateChanged = async () =>
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, OnWatchedUpdate);
 
         // Register a handler for when a page want to browse to other page
@@ -136,11 +136,13 @@ public sealed partial class MainPage : Page
     {
         NavigationViewControl.SelectedItem = Welcome;
 
+        var todayDone = App.Current.State.IsAllWatched;
+
         foreach (var video in Classes.Steven.VideoList)
         {
             MotivationalVideo.MenuItems.Add(new MUXC.NavigationViewItem
             {
-                Content = video.FileName
+                Content = video.FileName + (todayDone ? " ✅" : ""),
             });
         }
     }
@@ -153,7 +155,7 @@ public sealed partial class MainPage : Page
             var video = Classes.Steven.VideoList[i];
 
             element.Content = video.FileName
-                + (Classes.AppState.Watched[i] ? " ✅" : "");
+                + (App.Current.State.Watched[i] ? " ✅" : "");
         }
     }
 

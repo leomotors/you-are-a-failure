@@ -9,11 +9,20 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <Style TargetType="HyperlinkButton">
+        <Style x:Key="BaseButton" TargetType="ButtonBase">
             <Setter Property="FontSize" Value="16" />
-            <Setter Property="Padding" Value="10,5" />
-            <Setter Property="Margin" Value="0,2" />
             <Setter Property="CornerRadius" Value="4" />
+        </Style>
+
+        <Style BasedOn="{StaticResource BaseButton}" TargetType="HyperlinkButton">
+            <Setter Property="Margin" Value="0,2" />
+            <Setter Property="Padding" Value="10,5" />
+        </Style>
+
+        <Style BasedOn="{StaticResource BaseButton}" TargetType="Button">
+            <Setter Property="Margin" Value="0,10" />
+            <Setter Property="Padding" Value="12,7" />
+            <Setter Property="BorderThickness" Value="0" />
         </Style>
     </Page.Resources>
 
@@ -59,6 +68,10 @@
             <RadioButton>Dark &#x1f31a;</RadioButton>
             <RadioButton>Use System Settings ⚙️</RadioButton>
         </muxc:RadioButtons>
+
+        <TextBlock Style="{StaticResource Header2}">App Data</TextBlock>
+        <Button Click="OpenSave_Click">Open Save Location</Button>
+        <Button Click="ResetData_Click">Reset App Data</Button>
 
         <TextBlock Style="{StaticResource Header2}">
             Credits &amp; Sauce

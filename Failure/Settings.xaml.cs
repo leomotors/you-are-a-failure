@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
 using Windows.UI;
-using Windows.UI.Text;
+using Windows.System;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -118,5 +118,17 @@ public sealed partial class Settings : Page
 
         ThemeChangeAlertBorder.Margin =
             showAlert ? new Thickness(0) : new Thickness(0, 10, 0, 10);
+    }
+
+    private async void OpenSave_Click(object sender, RoutedEventArgs e)
+    {
+        var folder = ApplicationData.Current.RoamingFolder;
+        await Launcher.LaunchFolderAsync(folder);
+    }
+
+    private async void ResetData_Click(object sender, RoutedEventArgs e)
+    {
+        App.Current.State.WatchedDate = new List<DateTime>();
+        await App.Current.State.SaveDatabase();
     }
 }

@@ -34,18 +34,10 @@ public sealed partial class Statistics : Page
         Today = new(now.Year, now.Month, now.Day);
     }
 
-    private List<DateTime> WatchedDate = new()
-    {
-        new DateTime(2022, 3, 1),
-        new DateTime(2022, 3, 5),
-        new DateTime(2022, 3, 12),
-        new DateTime(2022, 3, 16),
-    };
-
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         WatchStatus.Text = "Today Status: "
-            + (Classes.AppState.IsAllWatched()
+            + (App.Current.State.IsAllWatched
                 ? "Treatment Completed!"
                 : "Go back and watch the video!");
 
@@ -71,9 +63,10 @@ public sealed partial class Statistics : Page
         var dateOffset = args.Item.Date;
         DateTime date = new(dateOffset.Year, dateOffset.Month, dateOffset.Day);
 
-        var color = WatchedDate.Contains(date) && date != Today
-            ? AkiColor
-            : Colors.Transparent;
+        var color =
+            App.Current.State.WatchedDate.Contains(date) && date != Today
+                ? AkiColor
+                : Colors.Transparent;
 
         HighlightDay(args.Item, color);
     }

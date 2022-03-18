@@ -36,7 +36,7 @@ public sealed partial class VideoList : Page
             VideoListView.Items.Add(new TextBlock
             {
                 Text = Classes.Steven.VideoList[i].FileName
-                        + (Classes.AppState.Watched[i] ? " ✅" : "")
+                        + (App.Current.State.Watched[i] ? " ✅" : "")
             }
             );
         }
