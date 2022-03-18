@@ -128,7 +128,7 @@ public sealed partial class Settings : Page
 
     private async void ResetData_Click(object sender, RoutedEventArgs e)
     {
-        App.Current.State.WatchedDate = new List<DateTime>();
+        App.Current.State.WatchedDate = new();
         await App.Current.State.SaveDatabase();
     }
 }

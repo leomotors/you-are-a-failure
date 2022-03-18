@@ -129,7 +129,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\AppState.cs" />
+    <Compile Include="Classes\AppState\AppState.cs" />
+    <Compile Include="Classes\AppState\Database.cs" />
+    <Compile Include="Classes\AppState\LocalState.cs" />
+    <Compile Include="Classes\AppState\Statistics.cs" />
     <Compile Include="Classes\NavigationTarget.cs" />
     <Compile Include="Classes\Steven.cs" />
     <Compile Include="Failure\Settings.xaml.cs">
@@ -158,6 +161,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Failure\EmotionalDamage.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Failure\Failure.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -262,6 +268,7 @@
     <None Include="download-video.sh" />
     <None Include="README.md" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -12,12 +12,16 @@
         <TextBlock x:Name="WatchStatus" Style="{StaticResource Header2}" />
 
         <CalendarView
-            Margin="0,20,0,0"
             x:Name="FailureCalendar"
+            Margin="0,20,0,0"
             CalendarViewDayItemChanging="FailureCalendar_DayItemChanging"
             CornerRadius="12"
             IsGroupLabelVisible="False"
             IsOutOfScopeEnabled="True"
             SelectionMode="Single" />
+
+        <StackPanel x:Name="StreakPanel">
+            <TextBlock Style="{StaticResource Header2}">Your Statistics</TextBlock>
+        </StackPanel>
     </StackPanel>
 </Page>

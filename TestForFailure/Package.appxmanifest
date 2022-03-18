@@ -1,20 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   IgnorableNamespaces="uap mp">
 
-  <Identity
-    Name="54184a93-8dcf-4a09-9cf4-cee9c428cbf4"
-    Publisher="CN=Leomotors"
-    Version="1.0.38.0" />
+  <Identity Name="4ecf4ad9-b4ac-4fc4-9224-4205b8e00975"
+            Publisher="CN=Leomotors"
+            Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="54184a93-8dcf-4a09-9cf4-cee9c428cbf4" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="4ecf4ad9-b4ac-4fc4-9224-4205b8e00975" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>You are a Failure!</DisplayName>
+    <DisplayName>TestForFailure</DisplayName>
     <PublisherDisplayName>Leomotors</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -24,22 +22,25 @@
   </Dependencies>
 
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-      Executable="$targetnametoken$.exe"
-      EntryPoint="you_are_a_failure.App">
+    <Application Id="vstest.executionengine.universal.App"
+        Executable="$targetnametoken$.exe"
+        EntryPoint="TestForFailure.App">
       <uap:VisualElements
-        DisplayName="You are a Failure!"
+        DisplayName="TestForFailure"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="The App that will keep reminding you that &quot;you are a failure!&quot;"
+        Description="TestForFailure"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
+  <Capabilities>
+    <Capability Name="internetClientServer" />
+    <Capability Name="privateNetworkClientServer" />
+  </Capabilities>
 </Package>

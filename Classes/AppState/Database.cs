@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Windows.Storage;
 
 #nullable enable
@@ -17,20 +16,16 @@ internal class ParseSaveException : Exception
     }
 }
 
-/// <summary>
-/// State of the App, controls list of video watched,
-/// load and save data about watch statistics.
-/// </summary>
 public partial class AppState
 {
-    // Database Section
-
-    private const string FileName = "chronicle.failure";
-    private const int SaveVersion = 1;
-    private const string VersionSpec = "VERSION";
+    public const string FileName = "chronicle.failure";
+    public const int SaveVersion = 1;
+    public const string VersionSpec = "VERSION";
     private readonly DateTime Today;
 
-    public List<DateTime>? WatchedDate;
+    public List<DateTime> WatchedDate = new();
+
+    public Task DatabaseReady;
 
     public AppState()
     {
@@ -39,17 +34,15 @@ public partial class AppState
 
         System.Diagnostics.Debug.WriteLine($"Today: {Today}");
 
-        LoadDatabase();
+        DatabaseReady = LoadDatabase();
     }
 
-    private async void LoadDatabase()
+    private async Task LoadDatabase()
     {
         var sf = await ApplicationData.Current.RoamingFolder.CreateFileAsync(
             FileName, CreationCollisionOption.OpenIfExists);
 
         var lines = (await FileIO.ReadTextAsync(sf)).Split("\n");
-
-        WatchedDate = new();
 
         try
         {
@@ -110,55 +103,5 @@ public partial class AppState
             await ApplicationData.Current.RoamingFolder.GetFileAsync(FileName);
 
         await FileIO.WriteTextAsync(targetFile, content);
-    }
-}
-
-public partial class AppState
-{
-    // Local State Section
-
-    public readonly bool[] Watched = new bool[Steven.VideoList.Length];
-
-    public Action? OnStateChanged;
-
-    static public int? GetIndex(string key)
-    {
-        for (int i = 0; i < Steven.VideoList.Length; i++)
-        {
-            if (Steven.VideoList[i].FileName == key)
-            {
-                return i;
-            }
-        }
-        return null;
-    }
-
-    public bool IsAllWatched { get; private set; }
-
-    public void AddWatched(string key)
-    {
-        Watched[(int)GetIndex(key)!] = true;
-
-        SetAllWatched();
-
-        if (OnStateChanged is not null) OnStateChanged();
-
-        if (IsAllWatched)
-        {
-            if (WatchedDate.Last() != Today)
-            {
-                WatchedDate!.Add(Today);
-                _ = SaveDatabase();
-            }
-        }
-    }
-
-    private void SetAllWatched()
-    {
-        bool result = true;
-
-        Array.ForEach(Watched, w => result &= w);
-
-        IsAllWatched = result;
     }
 }

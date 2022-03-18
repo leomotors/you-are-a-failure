@@ -45,6 +45,20 @@ public sealed partial class Statistics : Page
         FailureCalendar.FirstDayOfWeek = GlobalizationPreferences.WeekStartsOn;
         FailureCalendar.CalendarIdentifier = GlobalizationPreferences.Calendars[0];
 
+        var style = Application.Current.Resources["TextXL"] as Style;
+
+        StreakPanel.Children.Add(new TextBlock
+        {
+            Text = $"Current Streak: {App.Current.State.ComputeCurrentStreak()}",
+            Style = style,
+        });
+
+        StreakPanel.Children.Add(new TextBlock
+        {
+            Text = $"Longest Streak: {App.Current.State.ComputeLongestStreak()}",
+            Style = style,
+        });
+
         base.OnNavigatedTo(e);
     }
 
@@ -70,52 +84,5 @@ public sealed partial class Statistics : Page
                 : Colors.Transparent;
 
         HighlightDay(args.Item, color);
-    }
-
-    private int ComputeCurrentStreak()
-    {
-        var dates = App.Current.State.WatchedDate;
-
-        if (dates.Count < 1) return 0;
-
-        var oneday = new TimeSpan(1, 0, 0, 0);
-
-        if (Today - dates.Last() > oneday) return 0;
-
-        for (int i = dates.Count - 1; i > 0; i--)
-        {
-            if (dates[i] - dates[i - 1] != oneday)
-            {
-                return dates.Count - i;
-            }
-        }
-
-        return dates.Count;
-    }
-
-    private int ComputeLongestStreak()
-    {
-        var dates = App.Current.State.WatchedDate;
-
-        if (dates.Count < 1) return 0;
-
-        var oneday = new TimeSpan(1, 0, 0, 0);
-
-        int maxStreak = 0;
-        int currStreak = 0;
-        for (int i = 1; i < dates.Count; i++)
-        {
-            if (dates[i] - dates[i - 1] == oneday)
-            {
-                currStreak++;
-            }
-            else
-            {
-                maxStreak = Math.Max(maxStreak, currStreak);
-                currStreak = 0;
-            }
-        }
-
-        return maxStreak + 1;
     }
 }

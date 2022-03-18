@@ -92,7 +92,7 @@ public sealed partial class MainPage : Page
         SolidColorBrush inactiveForegroundBrush =
             (SolidColorBrush)Application.Current.Resources["TextFillColorDisabledBrush"];
 
-        if (e.WindowActivationState == Windows.UI.Core.CoreWindowActivationState.Deactivated)
+        if (e.WindowActivationState == CoreWindowActivationState.Deactivated)
         {
             AppTitle.Foreground = inactiveForegroundBrush;
         }
