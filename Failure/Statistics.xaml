@@ -12,6 +12,7 @@
         <TextBlock x:Name="WatchStatus" Style="{StaticResource Header2}" />
 
         <CalendarView
+            Margin="0,20,0,0"
             x:Name="FailureCalendar"
             CalendarViewDayItemChanging="FailureCalendar_DayItemChanging"
             CornerRadius="12"

@@ -18,7 +18,7 @@ using Windows.UI.Xaml.Navigation;
 namespace you_are_a_failure.Failure;
 
 /// <summary>
-/// An empty page that can be used on its own or navigated to within a Frame.
+/// The welcome page.
 /// </summary>
 public sealed partial class WelcomeFailure : Page
 {

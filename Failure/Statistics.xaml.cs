@@ -20,7 +20,8 @@ using Windows.UI;
 namespace you_are_a_failure.Failure;
 
 /// <summary>
-/// An empty page that can be used on its own or navigated to within a Frame.
+/// Statisics Page, contains the date you completed the treatment,
+/// streaks, analysis, etc.
 /// </summary>
 public sealed partial class Statistics : Page
 {
@@ -69,5 +70,52 @@ public sealed partial class Statistics : Page
                 : Colors.Transparent;
 
         HighlightDay(args.Item, color);
+    }
+
+    private int ComputeCurrentStreak()
+    {
+        var dates = App.Current.State.WatchedDate;
+
+        if (dates.Count < 1) return 0;
+
+        var oneday = new TimeSpan(1, 0, 0, 0);
+
+        if (Today - dates.Last() > oneday) return 0;
+
+        for (int i = dates.Count - 1; i > 0; i--)
+        {
+            if (dates[i] - dates[i - 1] != oneday)
+            {
+                return dates.Count - i;
+            }
+        }
+
+        return dates.Count;
+    }
+
+    private int ComputeLongestStreak()
+    {
+        var dates = App.Current.State.WatchedDate;
+
+        if (dates.Count < 1) return 0;
+
+        var oneday = new TimeSpan(1, 0, 0, 0);
+
+        int maxStreak = 0;
+        int currStreak = 0;
+        for (int i = 1; i < dates.Count; i++)
+        {
+            if (dates[i] - dates[i - 1] == oneday)
+            {
+                currStreak++;
+            }
+            else
+            {
+                maxStreak = Math.Max(maxStreak, currStreak);
+                currStreak = 0;
+            }
+        }
+
+        return maxStreak + 1;
     }
 }

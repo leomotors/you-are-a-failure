@@ -21,7 +21,7 @@ using Windows.UI.Core;
 namespace you_are_a_failure.Failure;
 
 /// <summary>
-/// An empty page that can be used on its own or navigated to within a Frame.
+/// The place where treatment is given. <b>Not</b> torture chamber like its name.
 /// </summary>
 public sealed partial class TortureChamber : Page
 {
