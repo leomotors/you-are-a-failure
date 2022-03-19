@@ -8,8 +8,8 @@
     <ProjectGuid>{2061E33B-8252-492B-82CE-3255731C3548}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>you_are_a_failure</RootNamespace>
-    <AssemblyName>you-are-a-failure</AssemblyName>
+    <RootNamespace>YouAreAFailure</RootNamespace>
+    <AssemblyName>YouAreAFailure</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22000.0</TargetPlatformVersion>
@@ -262,11 +262,11 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENSE">
+    <Content Include="..\LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="download-video.sh" />
-    <None Include="README.md" />
+    <None Include="..\download-video.sh" />
+    <None Include="..\README.md" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

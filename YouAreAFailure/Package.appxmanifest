@@ -9,7 +9,7 @@
   <Identity
     Name="54184a93-8dcf-4a09-9cf4-cee9c428cbf4"
     Publisher="CN=Leomotors"
-    Version="1.0.38.0" />
+    Version="1.0.39.0" />
 
   <mp:PhoneIdentity PhoneProductId="54184a93-8dcf-4a09-9cf4-cee9c428cbf4" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -30,7 +30,7 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="you_are_a_failure.App">
+      EntryPoint="YouAreAFailure.App">
       <uap:VisualElements
         DisplayName="You are a Failure!"
         Square150x150Logo="Assets\Square150x150Logo.png"

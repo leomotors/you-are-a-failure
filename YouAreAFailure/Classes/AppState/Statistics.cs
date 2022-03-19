@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 #nullable enable
 
-namespace you_are_a_failure.Classes;
+namespace YouAreAFailure.Classes;
 
 public partial class AppState
 {

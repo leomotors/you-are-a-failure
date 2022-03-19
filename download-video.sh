@@ -4,5 +4,5 @@
 
 # Videos are gitignored, you need to download them
 
-youtube-dl "https://www.youtube.com/watch?v=lO9K7VMFo2Y" -o Assets/Failure/Failure.mp4
-youtube-dl "https://www.youtube.com/watch?v=VvO_HpyVQWo" -o Assets/Failure/Stupid.mp4
+youtube-dl "https://www.youtube.com/watch?v=lO9K7VMFo2Y" -o YouAreAFailure/Assets/Failure/Failure.mp4
+youtube-dl "https://www.youtube.com/watch?v=VvO_HpyVQWo" -o YouAreAFailure/Assets/Failure/Stupid.mp4

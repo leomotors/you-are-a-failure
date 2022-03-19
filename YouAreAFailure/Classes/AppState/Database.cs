@@ -7,7 +7,7 @@ using Windows.Storage;
 
 #nullable enable
 
-namespace you_are_a_failure.Classes;
+namespace YouAreAFailure.Classes;
 
 internal class ParseSaveException : Exception
 {

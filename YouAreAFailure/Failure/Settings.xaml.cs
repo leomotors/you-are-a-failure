@@ -18,7 +18,7 @@ using Windows.System;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace you_are_a_failure.Failure;
+namespace YouAreAFailure.Failure;
 
 /// <summary>
 /// Settings Page, Also contains information about app &amp; credits.

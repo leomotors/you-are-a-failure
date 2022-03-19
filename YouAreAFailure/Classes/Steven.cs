@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace you_are_a_failure.Classes;
+namespace YouAreAFailure.Classes;
 
 public class Video
 {

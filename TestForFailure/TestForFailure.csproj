@@ -150,9 +150,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\you-are-a-failure.csproj">
-      <Project>{2061E33B-8252-492B-82CE-3255731C3548}</Project>
-      <Name>you-are-a-failure</Name>
+    <ProjectReference Include="..\YouAreAFailure\YouAreAFailure.csproj">
+      <Project>{2061e33b-8252-492b-82ce-3255731c3548}</Project>
+      <Name>YouAreAFailure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

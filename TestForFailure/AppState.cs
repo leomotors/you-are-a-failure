@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using you_are_a_failure.Classes;
+using YouAreAFailure.Classes;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;

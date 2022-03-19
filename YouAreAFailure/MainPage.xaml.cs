@@ -19,7 +19,7 @@ using Windows.UI.Core;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace you_are_a_failure;
+namespace YouAreAFailure;
 
 /// <summary>
 /// Main page.

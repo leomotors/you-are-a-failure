@@ -18,7 +18,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
 
-namespace you_are_a_failure;
+namespace YouAreAFailure;
 
 /// <summary>
 /// Provides application-specific behavior to supplement the default Application class.
