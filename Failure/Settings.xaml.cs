@@ -44,9 +44,9 @@ public sealed partial class Settings : Page
         this.InitializeComponent();
 
 #if DEBUG
-        bool IsDebug = true;
+        const bool IsDebug = true;
 #else
-        bool IsDebug = false;
+        const bool IsDebug = false;
 #endif
 
         // Copied from rabbit-house-menu which is from microsoft/Xaml-Controls-Gallery

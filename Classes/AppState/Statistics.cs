@@ -10,11 +10,11 @@ namespace you_are_a_failure.Classes;
 
 public partial class AppState
 {
+    private readonly TimeSpan oneday = new(1, 0, 0, 0);
+
     public int ComputeCurrentStreak()
     {
         if (WatchedDate is null || WatchedDate.Count < 1) return 0;
-
-        var oneday = new TimeSpan(1, 0, 0, 0);
 
         if (Today - WatchedDate.Last() > oneday) return 0;
 
@@ -32,8 +32,6 @@ public partial class AppState
     public int ComputeLongestStreak()
     {
         if (WatchedDate is null || WatchedDate.Count < 1) return 0;
-
-        var oneday = new TimeSpan(1, 0, 0, 0);
 
         int maxStreak = 0;
         int currStreak = 0;

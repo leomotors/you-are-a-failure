@@ -30,10 +30,10 @@
         <TextBlock Style="{StaticResource ParagraphLarge}">
             <TextBlock.Inlines>
                 <Run>But don't worry, we have a unique treatment method to keep you motivated.</Run>
-                <Run FontWeight="Bold">&quot;Insult&quot;</Run>
-                ,<Run>by delivering maximum</Run>
-                <Run FontStyle="Italic" FontWeight="Bold">Emotional Damage</Run>
-                .<Run>We can snap your fire back.</Run>
+                <Run FontWeight="Bold">&quot;Insult&quot;,</Run>
+                <Run>by delivering maximum</Run>
+                <Run FontStyle="Italic" FontWeight="Bold">Emotional Damage.</Run>
+                <Run>We can snap your fire back!</Run>
             </TextBlock.Inlines>
         </TextBlock>
 
@@ -44,7 +44,7 @@
             Source="ms-appx:///Assets/Failure/EmotionalDamage.gif" />
 
         <TextBlock Style="{StaticResource Header2}">
-            Thank you for using our services!
+            Thank you for trying our services!
         </TextBlock>
 
         <StackPanel Margin="0,10">

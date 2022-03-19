@@ -48,8 +48,6 @@ sealed partial class App : Application
 
         State = new Classes.AppState();
 
-        IsLightTheme = Application.Current.RequestedTheme == ApplicationTheme.Light;
-
         // Set App Theme based on Settings
         switch (CurrentTheme)
         {
@@ -61,6 +59,8 @@ sealed partial class App : Application
                 RequestedTheme = ApplicationTheme.Dark;
                 break;
         }
+
+        IsLightTheme = Application.Current.RequestedTheme == ApplicationTheme.Light;
     }
 
     /// <summary>
