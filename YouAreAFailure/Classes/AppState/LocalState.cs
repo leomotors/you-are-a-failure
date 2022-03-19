@@ -10,6 +10,8 @@ namespace YouAreAFailure.Classes;
 
 public partial class AppState
 {
+    // Local State, Watched Video section
+
     public readonly bool[] Watched = new bool[Steven.VideoList.Length];
 
     public Action? OnStateChanged;

@@ -10,6 +10,8 @@ namespace YouAreAFailure.Classes;
 
 public partial class AppState
 {
+    // Computation related section
+
     private readonly TimeSpan oneday = new(1, 0, 0, 0);
 
     public int ComputeCurrentStreak()

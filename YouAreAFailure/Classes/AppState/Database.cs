@@ -18,6 +18,8 @@ internal class ParseSaveException : Exception
 
 public partial class AppState
 {
+    // Database related section
+
     public const string FileName = "chronicle.failure";
     public const int SaveVersion = 1;
     public const string VersionSpec = "VERSION";
