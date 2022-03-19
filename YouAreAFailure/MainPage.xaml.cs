@@ -45,6 +45,10 @@ public sealed partial class MainPage : Page
         // Set XAML element as a draggable region.
         Window.Current.SetTitleBar(AppTitleBar);
 
+#if DEBUG
+        AppTitle.Text = "You are a Failure! (DEBUG Edition)";
+#endif
+
         // Register a handler for when the size of the overlaid caption control changes.
         // For example, when the app moves to a screen with a different DPI.
         coreTitleBar.LayoutMetricsChanged += (sender, args) =>

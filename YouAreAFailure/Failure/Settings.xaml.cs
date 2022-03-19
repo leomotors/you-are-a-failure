@@ -128,7 +128,29 @@ public sealed partial class Settings : Page
 
     private async void ResetData_Click(object sender, RoutedEventArgs e)
     {
-        App.Current.State.WatchedDate = new();
-        await App.Current.State.SaveDatabase();
+        var dialog = new ContentDialog
+        {
+            Title = "Resetting App Data",
+            Content =
+                "This will reset all your treatment statistics. This Action is not reversible!",
+            DefaultButton = ContentDialogButton.Primary,
+            PrimaryButtonText = "Let's Go",
+            SecondaryButtonText = "Don't Click",
+            CloseButtonText = "断る",
+        };
+
+        var result = await dialog.ShowAsync();
+
+        if (result == ContentDialogResult.Primary)
+        {
+            App.Current.State.WatchedDate = new();
+            await App.Current.State.SaveDatabase();
+        }
+        else if (result == ContentDialogResult.Secondary)
+        {
+            await Launcher.LaunchUriAsync(
+                new Uri("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+            );
+        }
     }
 }

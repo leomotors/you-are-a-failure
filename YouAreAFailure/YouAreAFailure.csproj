@@ -156,7 +156,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
+    <AppxManifest Include="Package.appxmanifest" Condition="!('$(Configuration)' == 'Debug')">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <AppxManifest Include="Package.debug.appxmanifest" Condition="'$(Configuration)' == 'Debug'">
       <SubType>Designer</SubType>
     </AppxManifest>
   </ItemGroup>
