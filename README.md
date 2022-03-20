@@ -6,11 +6,17 @@ The App that will keep reminding you that "_you are a failure!_"
 
 ## Motivation / Why I made this
 
-Explained at [https://leomotors.github.io/you-are-a-failure/](https://leomotors.github.io/you-are-a-failure/)
+Explained at https://leomotors.github.io/you-are-a-failure/
 
 ## Technologies used
 
 UWP + WinUI 2 (C#)
+
+## Repository Structure
+
+- YouAreAFailure: The UWP app
+- TestForFailure: Test for the above app
+- web: Web Page for https://leomotors.github.io/you-are-a-failure/
 
 ## Installation
 
@@ -18,7 +24,9 @@ UWP + WinUI 2 (C#)
 
 _The app is not publicly available yet_
 
-### or Build from Source (Good Luck)
+_Public release will be released at April's Fool Day 2022_
+
+### or Build from Sauce (Good Luck)
 
 ## Screenshots 📸
 

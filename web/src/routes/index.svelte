@@ -1,9 +1,10 @@
 <script lang="ts">
+  import Countdown from "$components/Countdown.svelte";
   import Image from "$components/image.svelte";
   import Youtube from "$components/youtube.svelte";
 </script>
 
-<main class="prose prose-2xl pb-20">
+<main class="prose prose-lg sm:prose-xl lg:prose-2xl pb-20">
   <div class="t-30" />
   <h1>You are a Failure!</h1>
   <p class="text-lg text-slate-700">(with Asian Accent)</p>
@@ -123,7 +124,7 @@
   <div class="t-5" />
   <h2>You are a Failure!</h2>
   <div class="t-10" />
-  <Image img="FailureApp1.webp" full />
+  <Image img="screenshots/failure.webp" full />
 
   <div class="t-5" />
   <h3>
@@ -134,18 +135,38 @@
     Log in to this app daily to watch some <i>motivational videos</i> by Steven He,
     keep doing this until you accomplished your goal!
   </p>
-  <p>And big 🙇‍♂️ to him for creating a very <i>cultured</i> meme.</p>
+  <p>(And big 🙇‍♂️ to him for creating a very <i>cultured</i> meme.)</p>
+  <p class="italic text-xl">
+    Note: This app is made for entertainment purposes only!
+  </p>
 
   <h2>✨Feature: Statistics</h2>
   <p>
     Show your friend how consistent you are into accomplishing your set goal!
   </p>
   <Image img="screenshots/statistics.webp" full />
+  <p class="italic text-xl">long way to go...</p>
+  <div class="t-10" />
 
   <h2>Download now for 🪟Windows</h2>
   <h4>✅ Support from Windows 10 2004 (10.0.19041)</h4>
   <h4>✅ Support Windows 11's New Mica Material</h4>
-  <p><i>Will</i> be available in Microsoft Store (If they don't reject)</p>
+  <h4>❌ Steal your personal data</h4>
+  <h4>✅ Emotional Damage</h4>
+  <p class="italic">
+    Note: This app is currently in private release candidate.
+  </p>
+
+  <div class="t-5" />
+  <h2>Public Release Coming Soon!</h2>
+  <h3>🕛 April's Fool Day 2022</h3>
+  <h3>📍 At Microsoft Store</h3>
+  <Countdown />
+  <p class="italic text-xl">
+    Note: Timezone may be complicated and in this case, I never know how
+    accurate the timer is.
+  </p>
+  <p>If you like this app, rate it 5⭐ and also ⭐ my GitHub Repo!</p>
 </main>
 
 <style lang="postcss">
