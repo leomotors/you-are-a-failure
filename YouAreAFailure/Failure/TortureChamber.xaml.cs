@@ -1,22 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Windows.Media.Playback;
+﻿using Windows.Media.Playback;
 using Windows.Media.Core;
 using Windows.UI.Core;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+#nullable enable
 
 namespace YouAreAFailure.Failure;
 
@@ -25,8 +11,8 @@ namespace YouAreAFailure.Failure;
 /// </summary>
 public sealed partial class TortureChamber : Page
 {
-    private bool FailuredStarted { get; set; }
-    private string VideoName { get; set; }
+    private bool FailuredStarted = false;
+    private string? VideoName;
 
     public TortureChamber()
     {
@@ -62,7 +48,7 @@ public sealed partial class TortureChamber : Page
         FailurePlayer.MediaPlayer.Volume = param?.Volume ?? 1;
 
         FooterTextBlock.Text =
-            App.Current.State.Watched[(int)Classes.AppState.GetIndex(VideoName)]
+            App.Current.State.Watched[(int)Classes.AppState.GetIndex(VideoName!)!]
                 ? "👍You have already completed this Treatment👍"
                 : "";
 
@@ -81,7 +67,7 @@ public sealed partial class TortureChamber : Page
         {
             if (FailuredStarted)
             {
-                App.Current.State.AddWatched(VideoName);
+                App.Current.State.AddWatched(VideoName!);
 
                 // https://social.msdn.microsoft.com/Forums/sqlserver/en-US/49426c88-fb6e-4894-b5ea-25d0f38b3358/uwpthe-application-called-an-interface-that-was-marshalled-for-a-different-thread?forum=wpdevelop
                 await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>

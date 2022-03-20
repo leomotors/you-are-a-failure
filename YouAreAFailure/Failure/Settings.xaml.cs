@@ -1,22 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Windows.Storage;
+﻿using Windows.Storage;
 using Windows.UI;
 using Windows.System;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+#nullable enable
 
 namespace YouAreAFailure.Failure;
 
@@ -43,17 +29,14 @@ public sealed partial class Settings : Page
     {
         this.InitializeComponent();
 
-#if DEBUG
-        const bool IsDebug = true;
-#else
-        const bool IsDebug = false;
-#endif
-
         // Copied from rabbit-house-menu which is from microsoft/Xaml-Controls-Gallery
         var version = Windows.ApplicationModel.Package.Current.Id.Version;
         AppVersion.Text =
             $"Version: {version.Major}.{version.Minor} Build {version.Build}.{version.Revision}"
-            + (IsDebug ? " (DEBUG)" : "");
+#if DEBUG
+            + " (DEBUG)"
+#endif
+            ;
     }
 
     protected override void OnNavigatedTo(NavigationEventArgs e)

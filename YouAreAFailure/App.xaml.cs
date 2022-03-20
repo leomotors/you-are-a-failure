@@ -1,22 +1,27 @@
-﻿global using MUXC = Microsoft.UI.Xaml.Controls;
+﻿global using System;
+global using System.Collections.Generic;
+global using System.IO;
+global using System.Linq;
+global using System.Text;
+global using System.Threading.Tasks;
+global using System.Runtime.InteropServices.WindowsRuntime;
+global using Windows.ApplicationModel;
+global using Windows.ApplicationModel.Activation;
+global using Windows.Foundation;
+global using Windows.Foundation.Collections;
+global using Windows.UI.Xaml;
+global using Windows.UI.Xaml.Controls;
+global using Windows.UI.Xaml.Controls.Primitives;
+global using Windows.UI.Xaml.Data;
+global using Windows.UI.Xaml.Input;
+global using Windows.UI.Xaml.Media;
+global using Windows.UI.Xaml.Navigation;
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+global using MUXC = Microsoft.UI.Xaml.Controls;
+
 using Windows.Storage;
+
+#nullable enable
 
 namespace YouAreAFailure;
 
@@ -30,10 +35,7 @@ sealed partial class App : Application
 
     public readonly bool IsLightTheme;
 
-    public static new App Current
-    {
-        get => Application.Current as App;
-    }
+    public static new App Current => (Application.Current as App)!;
 
     public readonly Classes.AppState State;
 

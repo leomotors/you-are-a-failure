@@ -1,28 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Windows.UI;
+﻿using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+#nullable enable
 
 namespace YouAreAFailure;
 
 /// <summary>
-/// Main page.
+/// Main page, yes it is.
 /// </summary>
 public sealed partial class MainPage : Page
 {
@@ -46,7 +32,7 @@ public sealed partial class MainPage : Page
         Window.Current.SetTitleBar(AppTitleBar);
 
 #if DEBUG
-        AppTitle.Text = "You are a Failure! (DEBUG Edition)";
+        AppTitle.Text += " (DEBUG Edition)";
 #endif
 
         // Register a handler for when the size of the overlaid caption control changes.
@@ -158,7 +144,7 @@ public sealed partial class MainPage : Page
             var element = MotivationalVideo.MenuItems[i] as MUXC.NavigationViewItem;
             var video = Classes.Steven.VideoList[i];
 
-            element.Content = video.FileName
+            element!.Content = video.FileName
                 + (App.Current.State.Watched[i] ? " ✅" : "");
         }
     }
@@ -171,7 +157,7 @@ public sealed partial class MainPage : Page
             return;
         }
 
-        var selected = args.SelectedItem as MUXC.NavigationViewItem;
+        var selected = (args.SelectedItem as MUXC.NavigationViewItem)!;
 
         if (selected == Welcome)
         {
@@ -206,7 +192,7 @@ public sealed partial class MainPage : Page
             MotivationalVideo.MenuItems
             .Where(
                 menu =>
-                    ((menu as MUXC.NavigationViewItem).Content as string)
+                    ((menu as MUXC.NavigationViewItem)!.Content as string)!
                         .Split(" ")[0] == selected
             ).First();
     }

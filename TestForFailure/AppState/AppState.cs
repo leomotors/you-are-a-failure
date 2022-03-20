@@ -1,7 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿global using System;
+global using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using YouAreAFailure.Classes;
+
+#nullable enable
 
 namespace TestForFailure;
 
