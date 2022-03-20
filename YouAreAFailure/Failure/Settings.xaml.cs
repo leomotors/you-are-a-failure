@@ -84,7 +84,7 @@ public sealed partial class Settings : Page
 
     private void ThemeSelector_Loaded(object sender, RoutedEventArgs e)
     {
-        (sender as MUXC.RadioButtons).SelectedIndex = App.Current.CurrentTheme;
+        (sender as MUXC.RadioButtons)!.SelectedIndex = App.Current.CurrentTheme;
     }
 
     private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,7 +92,7 @@ public sealed partial class Settings : Page
         var buttons = sender as MUXC.RadioButtons;
 
         ApplicationData.Current.LocalSettings.Values["themeSetting"] =
-            buttons.SelectedIndex;
+            buttons!.SelectedIndex;
 
         var showAlert = App.Current.CurrentTheme == buttons.SelectedIndex;
 

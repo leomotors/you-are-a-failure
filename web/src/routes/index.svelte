@@ -140,7 +140,7 @@
   <p>
     Show your friend how consistent you are into accomplishing your set goal!
   </p>
-  <Image img="Statistics.webp" full />
+  <Image img="screenshots/Statistics.webp" full />
 
   <h2>Download now for 🪟Windows</h2>
   <h4>✅ Support from Windows 10 2004 (10.0.19041)</h4>
