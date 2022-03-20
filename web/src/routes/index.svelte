@@ -3,7 +3,7 @@
   import Youtube from "$components/youtube.svelte";
 </script>
 
-<main class="prose prose-2xl">
+<main class="prose prose-2xl pb-20">
   <div class="t-30" />
   <h1>You are a Failure!</h1>
   <p class="text-lg text-slate-700">(with Asian Accent)</p>
@@ -106,11 +106,11 @@
 
   <p>
     I proudly present to you, The Asian Solution. <b>An Insult</b>, delivering
-    <i>emotional damage</i> that will push you forward
+    maximum <i>emotional damage</i> that will push you forward.
   </p>
 
   <h3>So, I have set my goal.</h3>
-  <Image img="My Set Goal" width="960" />
+  <Image img="MySetGoal.webp" full />
 
   <div class="t-10" />
 
@@ -119,21 +119,33 @@
 
   <div class="t-40" />
 
-  <h1 class="text-5xl sm:text-6xl">Introducing...</h1>
+  <h1 class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl">Introducing...</h1>
   <div class="t-5" />
   <h2>You are a Failure!</h2>
   <div class="t-10" />
-  <Image img="Failure Failure" width="960" />
+  <Image img="FailureApp1.webp" full />
 
-  <div class="t-10" />
+  <div class="t-5" />
   <h3>
     An App that will help you on keeping motivation and fire, with unique
     technique from Asian Descendant
   </h3>
   <p>
-    Log in to this app daily, watch some <i>motivational videos</i> by Steven He,
+    Log in to this app daily to watch some <i>motivational videos</i> by Steven He,
     keep doing this until you accomplished your goal!
   </p>
+  <p>And big 🙇‍♂️ to him for creating a very <i>cultured</i> meme.</p>
+
+  <h2>✨Feature: Statistics</h2>
+  <p>
+    Show your friend how consistent you are into accomplishing your set goal!
+  </p>
+  <Image img="Statistics.webp" full />
+
+  <h2>Download now for 🪟Windows</h2>
+  <h4>✅ Support from Windows 10 2004 (10.0.19041)</h4>
+  <h4>✅ Support Windows 11's New Mica Material</h4>
+  <p><i>Will</i> be available in Microsoft Store (If they don't reject)</p>
 </main>
 
 <style lang="postcss">
