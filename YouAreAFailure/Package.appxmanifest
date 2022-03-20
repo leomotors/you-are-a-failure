@@ -9,14 +9,14 @@
   <Identity
     Name="65313Leomotors.YouareaFailure"
     Publisher="CN=E10452D0-AB02-4FD0-8CF3-B1A36A4584AA"
-    Version="1.0.44.0" />
+    Version="1.0.45.0" />
 
   <mp:PhoneIdentity PhoneProductId="9b164781-9d5e-4668-89da-851e4bb1ad57" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>You are a Failure!</DisplayName>
     <PublisherDisplayName>Leomotors</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <Logo>Assets\Logo\StoreLogo.png</Logo>
   </Properties>
 
   <Dependencies>
@@ -33,12 +33,13 @@
       EntryPoint="YouAreAFailure.App">
       <uap:VisualElements
         DisplayName="You are a Failure!"
-        Square150x150Logo="Assets\Square150x150Logo.png"
-        Square44x44Logo="Assets\Square44x44Logo.png"
+        Square150x150Logo="Assets\Logo\Square150x150Logo.png"
+        Square44x44Logo="Assets\Logo\Square44x44Logo.png"
         Description="The App that will keep reminding you that &quot;you are a failure!&quot;"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:DefaultTile Wide310x150Logo="Assets\Logo\Wide310x150Logo.png" Square71x71Logo="Assets\Logo\SmallTile.png" Square310x310Logo="Assets\Logo\LargeTile.png">
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\Logo\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>

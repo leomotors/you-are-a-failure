@@ -2,8 +2,7 @@
 
 namespace YouAreAFailure.Classes;
 
-public enum NavigationTarget
-{
+public enum NavigationTarget {
     MotivationalVideo,
     Statistics,
 }

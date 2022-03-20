@@ -1,15 +1,14 @@
-﻿using YouAreAFailure.Classes;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
+
+using YouAreAFailure.Classes;
 
 #nullable enable
 
 namespace TestForFailure;
 
-public partial class AppStateTest
-{
+public partial class AppStateTest {
     // Test related to Streak Computation
 
     private readonly DateTime todayDefault = new(2022, 03, 30);
@@ -23,8 +22,7 @@ public partial class AppStateTest
         int expectedCurrent,
         int expectedLongest,
         int _,
-        DateTime? today = null)
-    {
+        DateTime? today = null) {
         var state = new AppState();
         await state.DatabaseReady;
 
@@ -39,8 +37,7 @@ public partial class AppStateTest
         Assert.AreEqual(expectedLongest, state.ComputeLongestStreak());
     }
 
-    private static IEnumerable<object[]> StreakComputationTestCase()
-    {
+    private static IEnumerable<object[]> StreakComputationTestCase() {
         // Test 1
         yield return new object[]
         {
@@ -117,16 +114,14 @@ public partial class AppStateTest
         List<DateTime> dates = new();
         var notToday = new DateTime(1980, 1, 3);
 
-        for (int i = 0; i < 10000; i++)
-        {
+        for (var i = 0; i < 10000; i++) {
             dates.Add(notToday.AddDays(2 * i));
         }
 
         yield return new object[] { dates, 0, 1, 6, new DateTime(9000, 1, 1) };
     }
 
-    public static string StreakComputationCaseName(MethodInfo _, object[] values)
-    {
+    public static string StreakComputationCaseName(MethodInfo _, object[] values) {
         var expectedCurrent = values[1] as int?;
         var expectedLongest = values[2] as int?;
         var tcid = values[3] as int?;

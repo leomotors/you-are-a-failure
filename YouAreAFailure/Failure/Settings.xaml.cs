@@ -1,6 +1,6 @@
 ﻿using Windows.Storage;
-using Windows.UI;
 using Windows.System;
+using Windows.UI;
 
 #nullable enable
 
@@ -9,8 +9,7 @@ namespace YouAreAFailure.Failure;
 /// <summary>
 /// Settings Page, Also contains information about app &amp; credits.
 /// </summary>
-public sealed partial class Settings : Page
-{
+public sealed partial class Settings : Page {
     // From Alert Box at System > Display > Custom Scaling
     private readonly SolidColorBrush BackgroundYellow = new(
             App.Current.IsLightTheme
@@ -25,8 +24,7 @@ public sealed partial class Settings : Page
                 : Color.FromArgb(255, 252, 225, 0)
         );
 
-    public Settings()
-    {
+    public Settings() {
         this.InitializeComponent();
 
         // Copied from rabbit-house-menu which is from microsoft/Xaml-Controls-Gallery
@@ -39,13 +37,11 @@ public sealed partial class Settings : Page
             ;
     }
 
-    protected override void OnNavigatedTo(NavigationEventArgs e)
-    {
+    protected override void OnNavigatedTo(NavigationEventArgs e) {
         Array.ForEach(
             Classes.Steven.VideoList,
             video => CreditsPanel.Children.Add(
-                new HyperlinkButton
-                {
+                new HyperlinkButton {
                     NavigateUri = new Uri(video.YoutubeLink),
                     Content = "Compilation Video: " + video.FileName,
                 }
@@ -56,9 +52,8 @@ public sealed partial class Settings : Page
     }
 
     // Copied from rabbit-house-menu
-    private async void ViewLicense_Click(object sender, RoutedEventArgs e)
-    {
-        string License = await FileIO.ReadTextAsync(
+    private async void ViewLicense_Click(object sender, RoutedEventArgs e) {
+        var License = await FileIO.ReadTextAsync(
                 await StorageFile.GetFileFromApplicationUriAsync(
                     new Uri("ms-appx:///LICENSE")
                 )
@@ -68,8 +63,7 @@ public sealed partial class Settings : Page
 
         var tokens = License.Split("\n");
 
-        var dialog = new ContentDialog
-        {
+        var dialog = new ContentDialog {
             Title = tokens[0],
             // Remove "\n" but not "\n\n"
             Content = string.Join("\n", tokens.Skip(2))
@@ -82,13 +76,11 @@ public sealed partial class Settings : Page
         await dialog.ShowAsync();
     }
 
-    private void ThemeSelector_Loaded(object sender, RoutedEventArgs e)
-    {
+    private void ThemeSelector_Loaded(object sender, RoutedEventArgs e) {
         (sender as MUXC.RadioButtons)!.SelectedIndex = App.Current.CurrentTheme;
     }
 
-    private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
+    private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e) {
         var buttons = sender as MUXC.RadioButtons;
 
         ApplicationData.Current.LocalSettings.Values["themeSetting"] =
@@ -103,16 +95,13 @@ public sealed partial class Settings : Page
             showAlert ? new Thickness(0) : new Thickness(0, 10, 0, 10);
     }
 
-    private async void OpenSave_Click(object sender, RoutedEventArgs e)
-    {
+    private async void OpenSave_Click(object sender, RoutedEventArgs e) {
         var folder = ApplicationData.Current.RoamingFolder;
         await Launcher.LaunchFolderAsync(folder);
     }
 
-    private async void ResetData_Click(object sender, RoutedEventArgs e)
-    {
-        var dialog = new ContentDialog
-        {
+    private async void ResetData_Click(object sender, RoutedEventArgs e) {
+        var dialog = new ContentDialog {
             Title = "Resetting App Data",
             Content =
                 "This will reset all your treatment statistics. This Action is not reversible!",
@@ -124,13 +113,10 @@ public sealed partial class Settings : Page
 
         var result = await dialog.ShowAsync();
 
-        if (result == ContentDialogResult.Primary)
-        {
+        if (result == ContentDialogResult.Primary) {
             App.Current.State.WatchedDate = new();
             await App.Current.State.SaveDatabase();
-        }
-        else if (result == ContentDialogResult.Secondary)
-        {
+        } else if (result == ContentDialogResult.Secondary) {
             await Launcher.LaunchUriAsync(
                 new Uri("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
             );

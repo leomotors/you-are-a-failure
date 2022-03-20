@@ -6,23 +6,20 @@ using Windows.UI;
 namespace YouAreAFailure.Failure;
 
 /// <summary>
-/// Statisics Page, contains the date you completed the treatment,
-/// streaks, analysis, etc.
+/// Statisics Page, contains the date you completed the
+/// treatment, streaks, analysis, etc.
 /// </summary>
-public sealed partial class Statistics : Page
-{
+public sealed partial class Statistics : Page {
     private readonly DateTime Today;
 
-    public Statistics()
-    {
+    public Statistics() {
         this.InitializeComponent();
 
         var now = DateTime.Now;
         Today = new(now.Year, now.Month, now.Day);
     }
 
-    protected override void OnNavigatedTo(NavigationEventArgs e)
-    {
+    protected override void OnNavigatedTo(NavigationEventArgs e) {
         WatchStatus.Text = "Today Status: "
             + (App.Current.State.IsAllWatched
                 ? "Treatment Completed! ✅"
@@ -33,15 +30,18 @@ public sealed partial class Statistics : Page
 
         var style = Application.Current.Resources["TextXL"] as Style;
 
-        StreakPanel.Children.Add(new TextBlock
-        {
+        StreakPanel.Children.Add(new TextBlock {
             Text = $"Current Streak: {App.Current.State.ComputeCurrentStreak()}",
             Style = style,
         });
 
-        StreakPanel.Children.Add(new TextBlock
-        {
+        StreakPanel.Children.Add(new TextBlock {
             Text = $"Longest Streak: {App.Current.State.ComputeLongestStreak()}",
+            Style = style,
+        });
+
+        StreakPanel.Children.Add(new TextBlock {
+            Text = $"Your Role: ",
             Style = style,
         });
 
@@ -49,8 +49,7 @@ public sealed partial class Statistics : Page
     }
 
     // https://blog.mzikmund.com/2020/07/highlighting-dates-in-uwp-calendarview/#comments
-    private void HighlightDay(CalendarViewDayItem day, Color color)
-    {
+    private void HighlightDay(CalendarViewDayItem day, Color color) {
         day.Background = new SolidColorBrush(color);
     }
 
@@ -59,8 +58,7 @@ public sealed partial class Statistics : Page
             ? Color.FromArgb(255, 111, 159, 216)
             : Color.FromArgb(255, 36, 44, 80);
 
-    private void FailureCalendar_DayItemChanging(CalendarView sender, CalendarViewDayItemChangingEventArgs args)
-    {
+    private void FailureCalendar_DayItemChanging(CalendarView sender, CalendarViewDayItemChangingEventArgs args) {
         var dateOffset = args.Item.Date;
         DateTime date = new(dateOffset.Year, dateOffset.Month, dateOffset.Day);
 

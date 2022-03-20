@@ -4,15 +4,11 @@
 
 namespace YouAreAFailure.Classes;
 
-internal class ParseSaveException : Exception
-{
-    public ParseSaveException(string message) : base(message)
-    {
-    }
+internal class ParseSaveException : Exception {
+    public ParseSaveException(string message) : base(message) { }
 }
 
-public partial class AppState
-{
+public partial class AppState {
     // Database related section
 
     public const string FileName = "chronicle.failure";
@@ -24,8 +20,7 @@ public partial class AppState
 
     public Task DatabaseReady;
 
-    public AppState()
-    {
+    public AppState() {
         var now = DateTime.Now;
         Today = new DateTime(now.Year, now.Month, now.Day);
 
@@ -34,52 +29,42 @@ public partial class AppState
         DatabaseReady = LoadDatabase();
     }
 
-    private async Task LoadDatabase()
-    {
+    private async Task LoadDatabase() {
         var sf = await ApplicationData.Current.RoamingFolder.CreateFileAsync(
             FileName, CreationCollisionOption.OpenIfExists);
 
         var lines = (await FileIO.ReadTextAsync(sf)).Split("\n");
 
-        try
-        {
-            if (lines.Length < 2)
-            {
+        try {
+            if (lines.Length < 2) {
                 throw new ParseSaveException("Empty Save File");
             }
 
             var versionLock = lines[0].Split(" ");
-            if (versionLock[0] != VersionSpec || int.Parse(versionLock[1]) != SaveVersion)
-            {
+            if (versionLock[0] != VersionSpec || int.Parse(versionLock[1]) != SaveVersion) {
                 // No Database Migration Yet
                 throw new ParseSaveException("Invalid Version or Save File Not Exist");
             }
 
-            foreach (var line in lines.Skip(1))
-            {
+            foreach (var line in lines.Skip(1)) {
                 var tokens = line.Split(" ");
 
                 if (tokens.Length == 3 &&
-                    int.TryParse(tokens[0], out int y) &&
-                    int.TryParse(tokens[1], out int m) &&
-                    int.TryParse(tokens[2], out int d) &&
+                    int.TryParse(tokens[0], out var y) &&
+                    int.TryParse(tokens[1], out var m) &&
+                    int.TryParse(tokens[2], out var d) &&
                     m >= 1 && m <= 12 &&
                     d >= 1 && d <= 31
-                )
-                {
+                ) {
                     WatchedDate.Add(new DateTime(y, m, d));
                 }
             }
-        }
-        catch (ParseSaveException)
-        {
+        } catch (ParseSaveException) {
             await SaveDatabase();
         }
 
-        if (WatchedDate.Count > 0 && WatchedDate.Last() == Today)
-        {
-            for (int i = 0; i < Steven.VideoList.Length; i++)
-            {
+        if (WatchedDate.Count > 0 && WatchedDate.Last() == Today) {
+            for (var i = 0; i < Steven.VideoList.Length; i++) {
                 Watched[i] = true;
             }
 
@@ -87,12 +72,10 @@ public partial class AppState
         }
     }
 
-    public async Task SaveDatabase()
-    {
+    public async Task SaveDatabase() {
         var content = $"{VersionSpec} {SaveVersion}\n";
 
-        foreach (var date in WatchedDate ?? new List<DateTime>())
-        {
+        foreach (var date in WatchedDate ?? new List<DateTime>()) {
             content += $"{date.Year} {date.Month} {date.Day}\n";
         }
 
@@ -100,5 +83,8 @@ public partial class AppState
             await ApplicationData.Current.RoamingFolder.GetFileAsync(FileName);
 
         await FileIO.WriteTextAsync(targetFile, content);
+    }
+
+    private void idk() {
     }
 }

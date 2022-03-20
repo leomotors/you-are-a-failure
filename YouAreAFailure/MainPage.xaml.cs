@@ -1,7 +1,7 @@
-﻿using Windows.UI;
-using Windows.UI.ViewManagement;
-using Windows.ApplicationModel.Core;
+﻿using Windows.ApplicationModel.Core;
+using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 
 #nullable enable
 
@@ -10,10 +10,9 @@ namespace YouAreAFailure;
 /// <summary>
 /// Main page, yes it is.
 /// </summary>
-public sealed partial class MainPage : Page
-{
-    public MainPage()
-    {
+public sealed partial class MainPage : Page {
+
+    public MainPage() {
         this.InitializeComponent();
 
         // https://docs.microsoft.com/en-us/windows/apps/design/style/mica#title-bar-code-behind
@@ -35,17 +34,15 @@ public sealed partial class MainPage : Page
         AppTitle.Text += " (DEBUG Edition)";
 #endif
 
-        // Register a handler for when the size of the overlaid caption control changes.
-        // For example, when the app moves to a screen with a different DPI.
-        coreTitleBar.LayoutMetricsChanged += (sender, args) =>
-        {
+        // Register a handler for when the size of the overlaid caption control
+        // changes. For example, when the app moves to a screen with a different DPI.
+        coreTitleBar.LayoutMetricsChanged += (sender, args) => {
             UpdateTitleBarLayout(sender);
         };
 
-        // Register a handler for when the title bar visibility changes.
-        // For example, when the title bar is invoked in full screen mode.
-        coreTitleBar.IsVisibleChanged += (sender, args) =>
-        {
+        // Register a handler for when the title bar visibility changes. For
+        // example, when the title bar is invoked in full screen mode.
+        coreTitleBar.IsVisibleChanged += (sender, args) => {
             AppTitleBar.Visibility = sender.IsVisible
                                         ? Visibility.Visible
                                         : Visibility.Collapsed;
@@ -64,83 +61,66 @@ public sealed partial class MainPage : Page
         Failure.WelcomeFailure.Navigator = RemoteNavigation;
     }
 
-    private void UpdateTitleBarLayout(CoreApplicationViewTitleBar coreTitleBar)
-    {
+    private void UpdateTitleBarLayout(CoreApplicationViewTitleBar coreTitleBar) {
         // Update title bar control size as needed to account for system size changes.
         AppTitleBar.Height = coreTitleBar.Height;
 
         // Ensure the custom title bar does not overlap window caption controls
-        Thickness currMargin = AppTitleBar.Margin;
+        var currMargin = AppTitleBar.Margin;
         AppTitleBar.Margin = new Thickness(currMargin.Left, currMargin.Top, coreTitleBar.SystemOverlayRightInset, currMargin.Bottom);
     }
 
     // Update the TitleBar based on the inactive/active state of the app
-    private void Current_Activated(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
-    {
-        SolidColorBrush defaultForegroundBrush =
+    private void Current_Activated(object sender, Windows.UI.Core.WindowActivatedEventArgs e) {
+        var defaultForegroundBrush =
             (SolidColorBrush)Application.Current.Resources["TextFillColorPrimaryBrush"];
-        SolidColorBrush inactiveForegroundBrush =
+        var inactiveForegroundBrush =
             (SolidColorBrush)Application.Current.Resources["TextFillColorDisabledBrush"];
 
-        if (e.WindowActivationState == CoreWindowActivationState.Deactivated)
-        {
+        if (e.WindowActivationState == CoreWindowActivationState.Deactivated) {
             AppTitle.Foreground = inactiveForegroundBrush;
-        }
-        else
-        {
+        } else {
             AppTitle.Foreground = defaultForegroundBrush;
         }
     }
 
     // Update the TitleBar content layout depending on NavigationView DisplayMode
-    private void NavigationViewControl_DisplayModeChanged(MUXC.NavigationView sender, MUXC.NavigationViewDisplayModeChangedEventArgs args)
-    {
+    private void NavigationViewControl_DisplayModeChanged(MUXC.NavigationView sender, MUXC.NavigationViewDisplayModeChangedEventArgs args) {
         const int topIndent = 16;
         const int expandedIndent = 48;
-        int minimalIndent = 104;
+        var minimalIndent = 104;
 
         // If the back button is not visible, reduce the TitleBar content indent.
-        if (NavigationViewControl.IsBackButtonVisible.Equals(MUXC.NavigationViewBackButtonVisible.Collapsed))
-        {
+        if (NavigationViewControl.IsBackButtonVisible.Equals(MUXC.NavigationViewBackButtonVisible.Collapsed)) {
             minimalIndent = 48;
         }
 
-        Thickness currMargin = AppTitleBar.Margin;
+        var currMargin = AppTitleBar.Margin;
 
         // Set the TitleBar margin dependent on NavigationView display mode
-        if (sender.PaneDisplayMode == MUXC.NavigationViewPaneDisplayMode.Top)
-        {
+        if (sender.PaneDisplayMode == MUXC.NavigationViewPaneDisplayMode.Top) {
             AppTitleBar.Margin = new Thickness(topIndent, currMargin.Top, currMargin.Right, currMargin.Bottom);
-        }
-        else if (sender.DisplayMode == MUXC.NavigationViewDisplayMode.Minimal)
-        {
+        } else if (sender.DisplayMode == MUXC.NavigationViewDisplayMode.Minimal) {
             AppTitleBar.Margin = new Thickness(minimalIndent, currMargin.Top, currMargin.Right, currMargin.Bottom);
-        }
-        else
-        {
+        } else {
             AppTitleBar.Margin = new Thickness(expandedIndent, currMargin.Top, currMargin.Right, currMargin.Bottom);
         }
     }
 
-    private void NavigationView_Loaded(object sender, RoutedEventArgs e)
-    {
+    private void NavigationView_Loaded(object sender, RoutedEventArgs e) {
         NavigationViewControl.SelectedItem = Welcome;
 
         var todayDone = App.Current.State.IsAllWatched;
 
-        foreach (var video in Classes.Steven.VideoList)
-        {
-            MotivationalVideo.MenuItems.Add(new MUXC.NavigationViewItem
-            {
+        foreach (var video in Classes.Steven.VideoList) {
+            MotivationalVideo.MenuItems.Add(new MUXC.NavigationViewItem {
                 Content = video.FileName + (todayDone ? " ✅" : ""),
             });
         }
     }
 
-    private void OnWatchedUpdate()
-    {
-        for (int i = 0; i < Classes.Steven.VideoList.Length; i++)
-        {
+    private void OnWatchedUpdate() {
+        for (var i = 0; i < Classes.Steven.VideoList.Length; i++) {
             var element = MotivationalVideo.MenuItems[i] as MUXC.NavigationViewItem;
             var video = Classes.Steven.VideoList[i];
 
@@ -149,33 +129,26 @@ public sealed partial class MainPage : Page
         }
     }
 
-    private void NavigationView_SelectionChanged(MUXC.NavigationView sender, MUXC.NavigationViewSelectionChangedEventArgs args)
-    {
-        if (args.IsSettingsSelected)
-        {
+    private void NavigationView_SelectionChanged(MUXC.NavigationView sender, MUXC.NavigationViewSelectionChangedEventArgs args) {
+        if (args.IsSettingsSelected) {
             FailureFrame.Navigate(typeof(Failure.Settings));
             return;
         }
 
         var selected = (args.SelectedItem as MUXC.NavigationViewItem)!;
 
-        if (selected == Welcome)
-        {
+        if (selected == Welcome) {
             FailureFrame.Navigate(typeof(Failure.WelcomeFailure));
-        }
-        else if (selected == MotivationalVideo)
-        {
+        } else if (selected == MotivationalVideo) {
             FailureFrame.Navigate(typeof(Failure.VideoList));
-        }
-        else if (selected == Statistics)
-        {
+        } else if (selected == Statistics) {
             FailureFrame.Navigate(typeof(Failure.Statistics));
-        }
-        else
-        {
-            if (selected.Content is not string videoName) return;
+        } else {
+            if (selected.Content is not string videoName) {
+                return;
+            }
 
-            Classes.Video selectedVideo =
+            var selectedVideo =
                 Classes.Steven.VideoList.Where(
                     vid => vid.FileName == videoName.Split(" ")[0]
                 ).First();
@@ -184,8 +157,7 @@ public sealed partial class MainPage : Page
         }
     }
 
-    public void OnVideoListSelected(string selected)
-    {
+    public void OnVideoListSelected(string selected) {
         MotivationalVideo.IsExpanded = true;
 
         NavigationViewControl.SelectedItem =
@@ -197,10 +169,8 @@ public sealed partial class MainPage : Page
             ).First();
     }
 
-    public void RemoteNavigation(Classes.NavigationTarget target)
-    {
-        switch (target)
-        {
+    public void RemoteNavigation(Classes.NavigationTarget target) {
+        switch (target) {
             case Classes.NavigationTarget.MotivationalVideo:
                 MotivationalVideo.IsSelected = true;
                 break;

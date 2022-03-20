@@ -2,14 +2,12 @@
 
 namespace YouAreAFailure.Classes;
 
-public class Video
-{
+public class Video {
     public readonly string YoutubeLink;
     public readonly string FileName;
     public readonly double Volume;
 
-    public Video(string youtubeLink, string fileName, double volume = 1)
-    {
+    public Video(string youtubeLink, string fileName, double volume = 1) {
         YoutubeLink = youtubeLink;
         FileName = fileName;
         Volume = volume;
@@ -19,8 +17,7 @@ public class Video
 /// <summary>
 /// Static <b>Constant</b> Class that holds the value of video list
 /// </summary>
-static public class Steven
-{
+public static class Steven {
     public const string VideoRoot = "Assets/Failure";
     public const string VideoExtension = "mp4";
 

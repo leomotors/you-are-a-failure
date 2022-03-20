@@ -1,29 +1,26 @@
-﻿using YouAreAFailure.Classes;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 using Windows.Storage;
+
+using YouAreAFailure.Classes;
 
 #nullable enable
 
 namespace TestForFailure;
 
-public partial class AppStateTest
-{
+public partial class AppStateTest {
     // Tests related to Database
 
     private static readonly string SaveHeader =
     $"{AppState.VersionSpec} {AppState.SaveVersion}";
 }
 
-public partial class AppStateTest
-{
+public partial class AppStateTest {
     [TestMethod]
     [Description("Test if loader (Loading Database) is working as intended")]
     [DynamicData(nameof(DatabaseLoadingTestCase), DynamicDataSourceType.Method)]
-    public async Task DatabaseLoading(string saveData, List<DateTime> expected)
-    {
+    public async Task DatabaseLoading(string saveData, List<DateTime> expected) {
         var sf = await ApplicationData.Current.RoamingFolder.CreateFileAsync(
             AppState.FileName, CreationCollisionOption.OpenIfExists
         );
@@ -36,8 +33,7 @@ public partial class AppStateTest
         CollectionAssert.AreEquivalent(expected, state.WatchedDate);
     }
 
-    private static IEnumerable<object[]> DatabaseLoadingTestCase()
-    {
+    private static IEnumerable<object[]> DatabaseLoadingTestCase() {
         yield return new object[]
         {
             @$"{SaveHeader}
@@ -64,12 +60,10 @@ illegal strings, also below empty new line, hehe
     }
 }
 
-public partial class AppStateTest
-{
+public partial class AppStateTest {
     [TestMethod]
     [Description("Test if database saves correctly when all video is watched")]
-    public async Task DatabaseSaverToday()
-    {
+    public async Task DatabaseSaverToday() {
         var sf = await ApplicationData.Current.RoamingFolder.CreateFileAsync(
             AppState.FileName, CreationCollisionOption.OpenIfExists
         );
@@ -82,8 +76,7 @@ public partial class AppStateTest
         var now = DateTime.Now;
         var today = new DateTime(now.Year, now.Month, now.Day);
 
-        foreach (var video in Steven.VideoList)
-        {
+        foreach (var video in Steven.VideoList) {
             state.AddWatched(video.FileName);
         }
 
@@ -110,8 +103,7 @@ public partial class AppStateTest
     public async Task DatabaseSaver(
         List<DateTime> testData,
         string expected,
-        object? _ = null)
-    {
+        object? _ = null) {
         var sf = await ApplicationData.Current.RoamingFolder.CreateFileAsync(
             AppState.FileName, CreationCollisionOption.OpenIfExists
         );
@@ -127,8 +119,7 @@ public partial class AppStateTest
         Assert.AreEqual(expected.Replace("\r\n", "\n").Trim(), wrote.Trim());
     }
 
-    private static IEnumerable<object[]> DatabaseSaverTestCase()
-    {
+    private static IEnumerable<object[]> DatabaseSaverTestCase() {
         yield return new object[]
         {
             new List<DateTime>()
@@ -154,11 +145,10 @@ public partial class AppStateTest
 
         var notToday = new DateTime(1980, 1, 1);
         List<DateTime> dates = new();
-        string longBoi = $"{SaveHeader}\n";
+        var longBoi = $"{SaveHeader}\n";
         var random = new Random();
 
-        for (int i = 0; i < 4000; i++)
-        {
+        for (var i = 0; i < 4000; i++) {
             notToday = notToday.AddDays(random.Next(3) + 1);
             dates.Add(notToday);
             longBoi += $"{notToday.Year} {notToday.Month} {notToday.Day}\n";
@@ -167,9 +157,8 @@ public partial class AppStateTest
         yield return new object[] { dates, longBoi, "Very Long Case (4000 Days)" };
     }
 
-    public static string DatabaseSaverCaseName(MethodInfo _, object[] values)
-    {
-        string? overrideName = values.Length > 2 ? values[2] as string : null;
+    public static string DatabaseSaverCaseName(MethodInfo _, object[] values) {
+        var overrideName = values.Length > 2 ? values[2] as string : null;
 
         return overrideName ?? (values[1] as string)!;
     }

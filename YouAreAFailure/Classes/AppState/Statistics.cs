@@ -2,22 +2,22 @@
 
 namespace YouAreAFailure.Classes;
 
-public partial class AppState
-{
+public partial class AppState {
     // Computation related section
 
     private readonly TimeSpan oneday = new(1, 0, 0, 0);
 
-    public int ComputeCurrentStreak()
-    {
-        if (WatchedDate is null || WatchedDate.Count < 1) return 0;
+    public int ComputeCurrentStreak() {
+        if (WatchedDate is null || WatchedDate.Count < 1) {
+            return 0;
+        }
 
-        if (Today - WatchedDate.Last() > oneday) return 0;
+        if (Today - WatchedDate.Last() > oneday) {
+            return 0;
+        }
 
-        for (int i = WatchedDate.Count - 1; i > 0; i--)
-        {
-            if (WatchedDate[i] - WatchedDate[i - 1] != oneday)
-            {
+        for (var i = WatchedDate.Count - 1; i > 0; i--) {
+            if (WatchedDate[i] - WatchedDate[i - 1] != oneday) {
                 return WatchedDate.Count - i;
             }
         }
@@ -25,20 +25,17 @@ public partial class AppState
         return WatchedDate.Count;
     }
 
-    public int ComputeLongestStreak()
-    {
-        if (WatchedDate is null || WatchedDate.Count < 1) return 0;
+    public int ComputeLongestStreak() {
+        if (WatchedDate is null || WatchedDate.Count < 1) {
+            return 0;
+        }
 
-        int maxStreak = 0;
-        int currStreak = 0;
-        for (int i = 1; i < WatchedDate.Count; i++)
-        {
-            if (WatchedDate[i] - WatchedDate[i - 1] == oneday)
-            {
+        var maxStreak = 0;
+        var currStreak = 0;
+        for (var i = 1; i < WatchedDate.Count; i++) {
+            if (WatchedDate[i] - WatchedDate[i - 1] == oneday) {
                 currStreak++;
-            }
-            else
-            {
+            } else {
                 maxStreak = Math.Max(maxStreak, currStreak);
                 currStreak = 0;
             }

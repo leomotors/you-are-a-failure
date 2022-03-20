@@ -2,20 +2,16 @@
 
 namespace YouAreAFailure.Classes;
 
-public partial class AppState
-{
+public partial class AppState {
     // Local State, Watched Video section
 
     public readonly bool[] Watched = new bool[Steven.VideoList.Length];
 
     public Action? OnStateChanged;
 
-    static public int? GetIndex(string key)
-    {
-        for (int i = 0; i < Steven.VideoList.Length; i++)
-        {
-            if (Steven.VideoList[i].FileName == key)
-            {
+    public static int? GetIndex(string key) {
+        for (var i = 0; i < Steven.VideoList.Length; i++) {
+            if (Steven.VideoList[i].FileName == key) {
                 return i;
             }
         }
@@ -24,27 +20,25 @@ public partial class AppState
 
     public bool IsAllWatched { get; private set; }
 
-    public void AddWatched(string key)
-    {
+    public void AddWatched(string key) {
         Watched[(int)GetIndex(key)!] = true;
 
         SetAllWatched();
 
-        if (OnStateChanged is not null) OnStateChanged();
+        if (OnStateChanged is not null) {
+            OnStateChanged();
+        }
 
-        if (IsAllWatched)
-        {
-            if (WatchedDate.Count == 0 || WatchedDate.Last() != Today)
-            {
+        if (IsAllWatched) {
+            if (WatchedDate.Count == 0 || WatchedDate.Last() != Today) {
                 WatchedDate!.Add(Today);
                 DatabaseReady = SaveDatabase();
             }
         }
     }
 
-    private void SetAllWatched()
-    {
-        bool result = true;
+    private void SetAllWatched() {
+        var result = true;
 
         Array.ForEach(Watched, w => result &= w);
 
