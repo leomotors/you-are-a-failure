@@ -17,6 +17,6 @@ public partial class AppStateTest
     [Description("Test if Tester is working")]
     public void CheckUnitTester()
     {
-        Assert.AreEqual(1 + 1, 2);
+        Assert.AreEqual(2, 1 + 1);
     }
 }

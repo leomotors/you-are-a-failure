@@ -25,7 +25,7 @@ public sealed partial class Statistics : Page
     {
         WatchStatus.Text = "Today Status: "
             + (App.Current.State.IsAllWatched
-                ? "Treatment Completed!"
+                ? "Treatment Completed! ✅"
                 : "Go back and watch the video!");
 
         FailureCalendar.FirstDayOfWeek = GlobalizationPreferences.WeekStartsOn;

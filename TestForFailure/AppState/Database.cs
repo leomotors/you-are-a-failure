@@ -1,6 +1,7 @@
 ﻿using YouAreAFailure.Classes;
 
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
 using Windows.Storage;
 
@@ -32,7 +33,7 @@ public partial class AppStateTest
         var state = new AppState();
         await state.DatabaseReady;
 
-        CollectionAssert.AreEquivalent(state.WatchedDate, expected);
+        CollectionAssert.AreEquivalent(expected, state.WatchedDate);
     }
 
     private static IEnumerable<object[]> DatabaseLoadingTestCase()
@@ -89,7 +90,7 @@ public partial class AppStateTest
         Assert.IsTrue(state.IsAllWatched);
 
         CollectionAssert.AreEquivalent(
-            state.WatchedDate, new List<DateTime>() { today }
+             new List<DateTime>() { today }, state.WatchedDate
         );
 
         await state.DatabaseReady;
@@ -97,15 +98,19 @@ public partial class AppStateTest
         var wrote = await FileIO.ReadTextAsync(sf);
 
         Assert.AreEqual(
-            wrote.Trim(),
-            $"{SaveHeader}\n{today.Year} {today.Month} {today.Day}"
+            $"{SaveHeader}\n{today.Year} {today.Month} {today.Day}",
+            wrote.Trim()
         );
     }
 
     [TestMethod]
     [Description("Test if database save as intended with given data")]
-    [DynamicData(nameof(DatabaseSaverTestCase), DynamicDataSourceType.Method)]
-    public async Task DatabaseSaver(List<DateTime> testData, string expected)
+    [DynamicData(nameof(DatabaseSaverTestCase), DynamicDataSourceType.Method,
+        DynamicDataDisplayName = nameof(DatabaseSaverCaseName))]
+    public async Task DatabaseSaver(
+        List<DateTime> testData,
+        string expected,
+        object? _ = null)
     {
         var sf = await ApplicationData.Current.RoamingFolder.CreateFileAsync(
             AppState.FileName, CreationCollisionOption.OpenIfExists
@@ -119,7 +124,7 @@ public partial class AppStateTest
 
         var wrote = await FileIO.ReadTextAsync(sf);
 
-        Assert.AreEqual(wrote.Trim(), expected.Replace("\r\n", "\n").Trim());
+        Assert.AreEqual(expected.Replace("\r\n", "\n").Trim(), wrote.Trim());
     }
 
     private static IEnumerable<object[]> DatabaseSaverTestCase()
@@ -146,5 +151,26 @@ public partial class AppStateTest
             new List<DateTime>(),
             $"{SaveHeader}\n",
         };
+
+        var notToday = new DateTime(1980, 1, 1);
+        List<DateTime> dates = new();
+        string longBoi = $"{SaveHeader}\n";
+        var random = new Random();
+
+        for (int i = 0; i < 4000; i++)
+        {
+            notToday = notToday.AddDays(random.Next(3) + 1);
+            dates.Add(notToday);
+            longBoi += $"{notToday.Year} {notToday.Month} {notToday.Day}\n";
+        }
+
+        yield return new object[] { dates, longBoi, "Very Long Case (4000 Days)" };
+    }
+
+    public static string DatabaseSaverCaseName(MethodInfo _, object[] values)
+    {
+        string? overrideName = values.Length > 2 ? values[2] as string : null;
+
+        return overrideName ?? (values[1] as string)!;
     }
 }

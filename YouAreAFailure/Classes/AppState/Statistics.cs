@@ -44,6 +44,7 @@ public partial class AppState
             }
         }
 
+        maxStreak = Math.Max(maxStreak, currStreak);
         return maxStreak + 1;
     }
 }
