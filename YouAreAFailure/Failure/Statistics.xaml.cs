@@ -70,7 +70,7 @@ public sealed partial class Statistics : Page {
 
         var dataPackage = new DataPackage();
         dataPackage.SetText(
-            "Yo Angelo! I have watched this *emotional damage* videos"
+            "Yo Angelo! I have watched this *emotional damage* videos "
                 + $"for **{current}** days straight!\n"
                 + $"Check this out! {Classes.Constants.MSStoreLink}"
         );
