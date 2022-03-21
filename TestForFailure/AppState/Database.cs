@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
-using System.Threading.Tasks;
-using Windows.Storage;
+﻿using Windows.Storage;
 
 using YouAreAFailure.Classes;
 
@@ -18,6 +15,7 @@ public partial class AppStateTest {
 
 public partial class AppStateTest {
     [TestMethod]
+    [Timeout(100)]
     [Description("Test if loader (Loading Database) is working as intended")]
     [DynamicData(nameof(DatabaseLoadingTestCase), DynamicDataSourceType.Method)]
     public async Task DatabaseLoading(string saveData, List<DateTime> expected) {
@@ -62,6 +60,7 @@ illegal strings, also below empty new line, hehe
 
 public partial class AppStateTest {
     [TestMethod]
+    [Timeout(100)]
     [Description("Test if database saves correctly when all video is watched")]
     public async Task DatabaseSaverToday() {
         var sf = await ApplicationData.Current.RoamingFolder.CreateFileAsync(
@@ -97,6 +96,7 @@ public partial class AppStateTest {
     }
 
     [TestMethod]
+    [Timeout(100)]
     [Description("Test if database save as intended with given data")]
     [DynamicData(nameof(DatabaseSaverTestCase), DynamicDataSourceType.Method,
         DynamicDataDisplayName = nameof(DatabaseSaverCaseName))]

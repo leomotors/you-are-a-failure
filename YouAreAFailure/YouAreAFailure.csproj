@@ -134,6 +134,7 @@
     <Compile Include="Classes\AppState\Database.cs" />
     <Compile Include="Classes\AppState\LocalState.cs" />
     <Compile Include="Classes\AppState\Statistics.cs" />
+    <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\NavigationTarget.cs" />
     <Compile Include="Classes\Role.cs" />
     <Compile Include="Classes\Steven.cs" />

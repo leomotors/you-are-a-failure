@@ -2,6 +2,7 @@
     x:Class="YouAreAFailure.Failure.Settings"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:classes="using:YouAreAFailure.Classes"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:YouAreAFailure.Failure"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -34,14 +35,11 @@
         <TextBlock Style="{StaticResource Header2}">App Theme</TextBlock>
         <Border
             x:Name="ThemeChangeAlertBorder"
-            Margin="0,20,0,20"
+            Margin="0,10,0,10"
             Background="{x:Bind BackgroundYellow}"
-            CornerRadius="6">
-            <StackPanel
-                x:Name="ThemeChangeAlert"
-                Padding="20"
-                Orientation="Horizontal"
-                Visibility="Collapsed">
+            CornerRadius="6"
+            Visibility="Collapsed">
+            <StackPanel Padding="20" Orientation="Horizontal">
                 <FontIcon
                     FontFamily="Segoe MDL2 Assets"
                     Foreground="{x:Bind ForegroundYellow}"
@@ -96,7 +94,10 @@
                 Project Site (GitHub Pages)
             </HyperlinkButton>
             <HyperlinkButton Click="ViewLicense_Click">
-                View License
+                View License (MIT)
+            </HyperlinkButton>
+            <HyperlinkButton NavigateUri="{x:Bind classes:Constants.MSStoreLink}">
+                Rate the App in Microsoft Store
             </HyperlinkButton>
         </StackPanel>
     </StackPanel>

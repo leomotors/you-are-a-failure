@@ -1,7 +1,4 @@
-﻿global using System;
-global using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-#nullable enable
+﻿#nullable enable
 
 namespace TestForFailure;
 
@@ -11,6 +8,7 @@ namespace TestForFailure;
 [TestClass]
 public partial class AppStateTest {
     [TestMethod]
+    [Timeout(100)]
     [Description("Test if Tester is working")]
     public void CheckUnitTester() {
         Assert.AreEqual(2, 1 + 1);

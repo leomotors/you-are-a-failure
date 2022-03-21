@@ -8,6 +8,7 @@
     mc:Ignorable="d">
 
     <StackPanel Margin="0,0,10,20" Style="{StaticResource PageLayout}">
+
         <TextBlock Style="{StaticResource PageHeader}">Statistics</TextBlock>
         <TextBlock x:Name="WatchStatus" Style="{StaticResource Header2}" />
 
@@ -20,8 +21,31 @@
             IsOutOfScopeEnabled="True"
             SelectionMode="Single" />
 
-        <StackPanel x:Name="StreakPanel">
+        <StackPanel x:Name="StreakPanel" Margin="0,20">
             <TextBlock Style="{StaticResource Header2}">Your Statistics</TextBlock>
+            <TextBlock x:Name="CurrentStreak" Style="{StaticResource TextXL}" />
+            <TextBlock x:Name="LongestStreak" Style="{StaticResource TextXL}" />
         </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="ShareButton" Click="ShareButton_Click">
+                <StackPanel Padding="5" Orientation="Horizontal">
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72D;" />
+                    <TextBlock Margin="5,0" Style="{StaticResource TextLarge}">
+                        Share your Statistics
+                    </TextBlock>
+                </StackPanel>
+            </Button>
+            <TextBlock
+                x:Name="CopiedMessage"
+                Margin="5,0"
+                VerticalAlignment="Center"
+                Style="{StaticResource TextXL}"
+                Visibility="Collapsed">
+                👍Copied to your Clipboard!
+            </TextBlock>
+        </StackPanel>
+        <TextBlock x:Name="UserRole" Style="{StaticResource Header2}" />
+
     </StackPanel>
 </Page>

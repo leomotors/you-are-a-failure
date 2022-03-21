@@ -84,7 +84,4 @@ public partial class AppState {
 
         await FileIO.WriteTextAsync(targetFile, content);
     }
-
-    private void idk() {
-    }
 }

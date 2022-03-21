@@ -30,7 +30,7 @@
                     Height="32"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Source="Assets/Square44x44Logo.png" />
+                    Source="Assets/Logo/Square44x44Logo.png" />
                 <TextBlock
                     x:Name="AppTitle"
                     Margin="12,0,0,0"
@@ -70,7 +70,7 @@
             </muxc:NavigationView.MenuItems>
 
             <!--  Page Layout  -->
-            <ScrollViewer Margin="0,0,10,35">
+            <ScrollViewer x:Name="ContentOutlet">
                 <Frame x:Name="FailureFrame" />
             </ScrollViewer>
 

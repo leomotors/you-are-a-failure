@@ -84,18 +84,21 @@ public sealed partial class MainPage : Page {
         }
     }
 
+    private readonly Thickness NormalOutletMargin = new(0, 0, 10, 35);
+    private readonly Thickness SmallOutletMargin = new(0, 35, 0, 25);
+
     // Update the TitleBar content layout depending on NavigationView DisplayMode
     private void NavigationViewControl_DisplayModeChanged(MUXC.NavigationView sender, MUXC.NavigationViewDisplayModeChangedEventArgs args) {
         const int topIndent = 16;
         const int expandedIndent = 48;
-        var minimalIndent = 104;
-
-        // If the back button is not visible, reduce the TitleBar content indent.
-        if (NavigationViewControl.IsBackButtonVisible.Equals(MUXC.NavigationViewBackButtonVisible.Collapsed)) {
-            minimalIndent = 48;
-        }
+        const int minimalIndent = 48;
 
         var currMargin = AppTitleBar.Margin;
+
+        ContentOutlet.Margin =
+            sender.DisplayMode == MUXC.NavigationViewDisplayMode.Minimal
+                ? SmallOutletMargin
+                : NormalOutletMargin;
 
         // Set the TitleBar margin dependent on NavigationView display mode
         if (sender.PaneDisplayMode == MUXC.NavigationViewPaneDisplayMode.Top) {

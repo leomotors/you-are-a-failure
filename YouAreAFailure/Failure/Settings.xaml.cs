@@ -86,13 +86,9 @@ public sealed partial class Settings : Page {
         ApplicationData.Current.LocalSettings.Values["themeSetting"] =
             buttons!.SelectedIndex;
 
-        var showAlert = App.Current.CurrentTheme == buttons.SelectedIndex;
-
-        ThemeChangeAlert.Visibility =
-            showAlert ? Visibility.Collapsed : Visibility.Visible;
-
-        ThemeChangeAlertBorder.Margin =
-            showAlert ? new Thickness(0) : new Thickness(0, 10, 0, 10);
+        ThemeChangeAlertBorder.Visibility =
+            App.Current.CurrentTheme == buttons.SelectedIndex
+                ? Visibility.Collapsed : Visibility.Visible;
     }
 
     private async void OpenSave_Click(object sender, RoutedEventArgs e) {
@@ -116,6 +112,7 @@ public sealed partial class Settings : Page {
         if (result == ContentDialogResult.Primary) {
             App.Current.State.WatchedDate = new();
             await App.Current.State.SaveDatabase();
+            App.Current.State.ResetTodayWatched();
         } else if (result == ContentDialogResult.Secondary) {
             await Launcher.LaunchUriAsync(
                 new Uri("https://www.youtube.com/watch?v=dQw4w9WgXcQ")

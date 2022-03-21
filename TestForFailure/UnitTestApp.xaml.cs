@@ -1,4 +1,10 @@
-﻿using Windows.ApplicationModel;
+﻿global using System;
+global using System.Collections.Generic;
+global using System.Reflection;
+global using System.Threading.Tasks;
+global using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -22,8 +28,9 @@ public sealed partial class App : Application {
     }
 
     /// <summary>
-    /// Invoked when the application is launched normally by the end user.  Other entry points
-    /// will be used such as when the application is launched to open a specific file.
+    /// Invoked when the application is launched normally by the end user. Other
+    /// entry points will be used such as when the application is launched to
+    /// open a specific file.
     /// </summary>
     /// <param name="e">Details about the launch request and process.</param>
     protected override void OnLaunched(LaunchActivatedEventArgs e) {

@@ -22,7 +22,7 @@ public static class Steven {
     public const string VideoExtension = "mp4";
 
     public static readonly Video[] VideoList = {
-            new Video("https://www.youtube.com/watch?v=lO9K7VMFo2Y", "Failure"),
-            new Video("https://www.youtube.com/watch?v=VvO_HpyVQWo", "Stupid")
-        };
+        new Video("https://www.youtube.com/watch?v=lO9K7VMFo2Y", "Failure"),
+        new Video("https://www.youtube.com/watch?v=VvO_HpyVQWo", "Stupid")
+    };
 }

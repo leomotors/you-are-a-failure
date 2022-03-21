@@ -44,4 +44,14 @@ public partial class AppState {
 
         IsAllWatched = result;
     }
+
+    public void ResetTodayWatched() {
+        for (var i = 0; i < Steven.VideoList?.Length; i++) {
+            Watched[i] = false;
+        }
+
+        if (OnStateChanged is not null) {
+            OnStateChanged();
+        }
+    }
 }

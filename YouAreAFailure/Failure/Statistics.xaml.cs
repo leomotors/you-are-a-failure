@@ -1,4 +1,5 @@
-﻿using Windows.System.UserProfile;
+﻿using Windows.ApplicationModel.DataTransfer;
+using Windows.System.UserProfile;
 using Windows.UI;
 
 #nullable enable
@@ -11,6 +12,8 @@ namespace YouAreAFailure.Failure;
 /// </summary>
 public sealed partial class Statistics : Page {
     private readonly DateTime Today;
+    private int? current;
+    private int? longest;
 
     public Statistics() {
         this.InitializeComponent();
@@ -28,22 +31,13 @@ public sealed partial class Statistics : Page {
         FailureCalendar.FirstDayOfWeek = GlobalizationPreferences.WeekStartsOn;
         FailureCalendar.CalendarIdentifier = GlobalizationPreferences.Calendars[0];
 
-        var style = Application.Current.Resources["TextXL"] as Style;
+        current = App.Current.State.ComputeCurrentStreak();
+        longest = App.Current.State.ComputeLongestStreak();
 
-        StreakPanel.Children.Add(new TextBlock {
-            Text = $"Current Streak: {App.Current.State.ComputeCurrentStreak()}",
-            Style = style,
-        });
+        CurrentStreak.Text = $"Current Streak: {current}";
+        LongestStreak.Text = $"Longest Streak: {longest}";
 
-        StreakPanel.Children.Add(new TextBlock {
-            Text = $"Longest Streak: {App.Current.State.ComputeLongestStreak()}",
-            Style = style,
-        });
-
-        StreakPanel.Children.Add(new TextBlock {
-            Text = $"Your Role: ",
-            Style = style,
-        });
+        UserRole.Text = Classes.Role.GetRole((int)longest, "✨Your Role: ", "✨");
 
         base.OnNavigatedTo(e);
     }
@@ -68,5 +62,23 @@ public sealed partial class Statistics : Page {
                 : Colors.Transparent;
 
         HighlightDay(args.Item, color);
+    }
+
+    private async void ShareButton_Click(object sender, RoutedEventArgs e) {
+        ShareButton.IsEnabled = false;
+        CopiedMessage.Visibility = Visibility.Visible;
+
+        var dataPackage = new DataPackage();
+        dataPackage.SetText(
+            "Yo Angelo! I have watched this *emotional damage* videos"
+                + $"for **{current}** days straight!\n"
+                + $"Check this out! {Classes.Constants.MSStoreLink}"
+        );
+        Clipboard.SetContent(dataPackage);
+
+        await Task.Delay(3000);
+
+        ShareButton.IsEnabled = true;
+        CopiedMessage.Visibility = Visibility.Collapsed;
     }
 }

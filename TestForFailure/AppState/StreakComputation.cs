@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
-using System.Threading.Tasks;
-
-using YouAreAFailure.Classes;
+﻿using YouAreAFailure.Classes;
 
 #nullable enable
 
@@ -14,6 +10,7 @@ public partial class AppStateTest {
     private readonly DateTime todayDefault = new(2022, 03, 30);
 
     [TestMethod]
+    [Timeout(100)]
     [Description("Test Streak Computation")]
     [DynamicData(nameof(StreakComputationTestCase), DynamicDataSourceType.Method,
         DynamicDataDisplayName = nameof(StreakComputationCaseName))]
