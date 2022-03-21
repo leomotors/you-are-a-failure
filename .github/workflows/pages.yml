@@ -11,7 +11,7 @@ jobs:
       matrix:
         node: ["16"]
 
-    name: Documentation (Node v${{ matrix.node }})
+    name: GitHub Pages Deploy
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -25,9 +25,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-
-      - name: Yarn Cache
-        uses: c-hive/gha-yarn-cache@v2
 
       - name: Install Dependencies (Yarn)
         run: yarn install
