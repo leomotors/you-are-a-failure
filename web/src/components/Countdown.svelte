@@ -22,7 +22,7 @@
     const tm = Math.floor(rem / 60);
     const m = tm % 60;
     const th = Math.floor(tm / 60);
-    const h = tm % 24;
+    const h = th % 24;
     const d = Math.floor(th / 24);
 
     return `${sign}${d}:${a(h)}:${a(m)}:${a(s)}`;
