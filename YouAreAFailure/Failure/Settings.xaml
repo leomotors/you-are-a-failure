@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:classes="using:YouAreAFailure.Classes"
+    xmlns:controls="using:YouAreAFailure.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:YouAreAFailure.Failure"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -67,6 +68,15 @@
             <RadioButton>Use System Settings ⚙️</RadioButton>
         </muxc:RadioButtons>
 
+        <TextBlock Style="{StaticResource Header2}">Aggressive Mode</TextBlock>
+        <TextBlock FontSize="16" TextWrapping="Wrap">
+            You will get RICK ROLL if you stop watching the video before it is finished.
+        </TextBlock>
+        <ToggleSwitch
+            x:Name="AggressiveSwitch"
+            Margin="0,7,0,0"
+            Toggled="AggressiveSwitch_Toggled" />
+
         <TextBlock Style="{StaticResource Header2}">App Data</TextBlock>
         <Button Click="OpenSave_Click">Open Save Location</Button>
         <Button Click="ResetData_Click">Reset App Data</Button>
@@ -75,30 +85,25 @@
             Credits &amp; Sauce
         </TextBlock>
         <StackPanel x:Name="CreditsPanel">
-            <HyperlinkButton NavigateUri="https://www.youtube.com/c/StevenHe">
-                Steven He's YouTube Channel
-            </HyperlinkButton>
+            <controls:ExternalLink Text="Steven He's YouTube Channel" Url="https://www.youtube.com/c/StevenHe" />
         </StackPanel>
 
         <TextBlock Style="{StaticResource Header2}">About App</TextBlock>
         <StackPanel>
             <TextBlock
                 x:Name="AppVersion"
-                Padding="0,0,0,10"
+                Margin="0,5,0,10"
                 Style="{StaticResource TextLarge}" />
 
-            <HyperlinkButton NavigateUri="https://github.com/Leomotors/you-are-a-failure">
-                GitHub Project
-            </HyperlinkButton>
-            <HyperlinkButton NavigateUri="https://leomotors.github.io/you-are-a-failure/">
-                Project Site (GitHub Pages)
-            </HyperlinkButton>
+            <controls:ExternalLink Text="GitHub Project" Url="https://github.com/Leomotors/you-are-a-failure" />
+
+            <controls:ExternalLink Text="Project Site (GitHub Pages)" Url="https://leomotors.github.io/you-are-a-failure/" />
+
             <HyperlinkButton Click="ViewLicense_Click">
                 View License (MIT)
             </HyperlinkButton>
-            <HyperlinkButton NavigateUri="{x:Bind classes:Constants.MSStoreLink}">
-                Rate the App in Microsoft Store
-            </HyperlinkButton>
+
+            <controls:ExternalLink Text="Rate the App in Microsoft Store" Url="{x:Bind classes:Constants.MSStoreLink, Mode=OneTime}" />
         </StackPanel>
     </StackPanel>
 </Page>

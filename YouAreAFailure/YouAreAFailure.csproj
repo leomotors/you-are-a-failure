@@ -26,7 +26,7 @@
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x64|arm64</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
   </PropertyGroup>
@@ -134,10 +134,15 @@
     <Compile Include="Classes\AppState\Database.cs" />
     <Compile Include="Classes\AppState\LocalState.cs" />
     <Compile Include="Classes\AppState\Statistics.cs" />
+    <Compile Include="Classes\Bruh.cs" />
+    <Compile Include="Classes\Key.cs" />
     <Compile Include="Classes\Constants.cs" />
     <Compile Include="Classes\NavigationTarget.cs" />
     <Compile Include="Classes\Role.cs" />
     <Compile Include="Classes\Steven.cs" />
+    <Compile Include="Controls\ExternalLink.xaml.cs">
+      <DependentUpon>ExternalLink.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Failure\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -227,6 +232,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\ExternalLink.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Failure\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

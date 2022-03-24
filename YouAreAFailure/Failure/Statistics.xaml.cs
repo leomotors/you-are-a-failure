@@ -37,7 +37,9 @@ public sealed partial class Statistics : Page {
         CurrentStreak.Text = $"Current Streak: {current}";
         LongestStreak.Text = $"Longest Streak: {longest}";
 
-        UserRole.Text = Classes.Role.GetRole((int)longest, "✨Your Role: ", "✨");
+        UserRole.Text = Classes.Role.GetRole(
+            (int)current, "✨Your Current Role: ", "✨"
+        );
 
         base.OnNavigatedTo(e);
     }

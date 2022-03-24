@@ -1,5 +1,6 @@
 ﻿using Windows.Media.Core;
 using Windows.Media.Playback;
+using Windows.Storage;
 using Windows.UI.Core;
 
 #nullable enable
@@ -19,6 +20,33 @@ public sealed partial class TortureChamber : Page {
 
     protected override void OnNavigatedFrom(NavigationEventArgs e) {
         FailurePlayer.MediaPlayer.Dispose();
+
+        var state = App.Current.State;
+
+        var aggressiveOn =
+            ApplicationData.Current.LocalSettings.Values[nameof(Classes.Key.AggressiveMode)]
+                as bool? ?? false;
+
+        if (aggressiveOn &&
+            !state.Watched[(int)Classes.AppState.GetIndex(VideoName!)!]
+        ) {
+            _ = Classes.Bruh.RickRoll();
+
+            const string content =
+@"Because you leave the video before finishing it, you deserve to be punished!
+
+PS. It is because you have aggressive mode turned on, you turned it on yourself, you forgot?";
+
+            var dialog = new ContentDialog {
+                Title = "You have been Rick Rolled!",
+                Content = content,
+                DefaultButton = ContentDialogButton.Close,
+                CloseButtonText = "O_o",
+            };
+
+            _ = dialog.ShowAsync();
+        }
+
         base.OnNavigatedFrom(e);
     }
 

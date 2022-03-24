@@ -12,6 +12,12 @@
             Motivational Video List
         </TextBlock>
 
+        <TextBlock FontStyle="Italic" Style="{StaticResource ParagraphLarge}">
+            Note: I do not make or own these videos, it is credited to
+            Steven He for creating memorable meme and person who make
+            a compilation of this. All credits are listed in Settings.
+        </TextBlock>
+
         <TextBlock Style="{StaticResource ParagraphLarge}">
             <TextBlock.Inlines>
                 <Run>Thank you Steven He for making a great</Run>

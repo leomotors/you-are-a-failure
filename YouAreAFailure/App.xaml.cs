@@ -23,7 +23,8 @@ namespace YouAreAFailure;
 public sealed partial class App : Application {
 
     public readonly int CurrentTheme =
-        ApplicationData.Current.LocalSettings.Values["themeSetting"] as int? ?? 2;
+        ApplicationData.Current.LocalSettings.Values[nameof(Classes.Key.ThemeSetting)]
+            as int? ?? 2;
 
     public readonly bool IsLightTheme;
 

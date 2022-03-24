@@ -1,0 +1,25 @@
+﻿<UserControl
+    x:Class="YouAreAFailure.Controls.ExternalLink"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:YouAreAFailure.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+
+    <HyperlinkButton NavigateUri="{x:Bind Url, Mode=OneWay}">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{x:Bind Text, Mode=OneWay}" />
+            <FontIcon
+                x:Name="ExtIcon"
+                Margin="8,0"
+                VerticalAlignment="Bottom"
+                FontFamily="Segoe MDL2 Assets"
+                Foreground="Blue"
+                Glyph="&#xE8A7;" />
+        </StackPanel>
+    </HyperlinkButton>
+
+</UserControl>

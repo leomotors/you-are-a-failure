@@ -28,7 +28,7 @@ public sealed partial class Settings : Page {
         this.InitializeComponent();
 
         // Copied from rabbit-house-menu which is from microsoft/Xaml-Controls-Gallery
-        var version = Windows.ApplicationModel.Package.Current.Id.Version;
+        var version = Package.Current.Id.Version;
         AppVersion.Text =
             $"Version: {version.Major}.{version.Minor} Build {version.Build}.{version.Revision}"
 #if DEBUG
@@ -41,12 +41,16 @@ public sealed partial class Settings : Page {
         Array.ForEach(
             Classes.Steven.VideoList,
             video => CreditsPanel.Children.Add(
-                new HyperlinkButton {
-                    NavigateUri = new Uri(video.YoutubeLink),
-                    Content = "Compilation Video: " + video.FileName,
-                }
-            )
+                    new Controls.ExternalLink {
+                        Text = $"Compilation Video: {video.FileName}",
+                        Url = video.YoutubeLink,
+                    }
+                )
         );
+
+        AggressiveSwitch.IsOn =
+            ApplicationData.Current.LocalSettings.Values[nameof(Classes.Key.AggressiveMode)]
+                as bool? ?? false;
 
         base.OnNavigatedTo(e);
     }
@@ -83,8 +87,8 @@ public sealed partial class Settings : Page {
     private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e) {
         var buttons = sender as MUXC.RadioButtons;
 
-        ApplicationData.Current.LocalSettings.Values["themeSetting"] =
-            buttons!.SelectedIndex;
+        ApplicationData.Current.LocalSettings.Values[nameof(Classes.Key.ThemeSetting)]
+            = buttons!.SelectedIndex;
 
         ThemeChangeAlertBorder.Visibility =
             App.Current.CurrentTheme == buttons.SelectedIndex
@@ -114,9 +118,12 @@ public sealed partial class Settings : Page {
             await App.Current.State.SaveDatabase();
             App.Current.State.ResetTodayWatched();
         } else if (result == ContentDialogResult.Secondary) {
-            await Launcher.LaunchUriAsync(
-                new Uri("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
-            );
+            await Classes.Bruh.RickRoll();
         }
+    }
+
+    private void AggressiveSwitch_Toggled(object sender, RoutedEventArgs e) {
+        ApplicationData.Current.LocalSettings.Values[nameof(Classes.Key.AggressiveMode)]
+            = (sender as ToggleSwitch)!.IsOn;
     }
 }
