@@ -18,7 +18,7 @@ public class RoleTest {
         Tuple<int, string?>[] items,
         Tuple<int, int?>[] tests,
         object? _ = null
-        ) {
+    ) {
 
         foreach (var test in tests) {
             Assert.AreEqual(test.Item2, Role.LowerBound(items, test.Item1));

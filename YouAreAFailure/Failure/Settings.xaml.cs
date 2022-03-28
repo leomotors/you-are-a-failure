@@ -41,11 +41,11 @@ public sealed partial class Settings : Page {
         Array.ForEach(
             Classes.Steven.VideoList,
             video => CreditsPanel.Children.Add(
-                    new Controls.ExternalLink {
-                        Text = $"Compilation Video: {video.FileName}",
-                        Url = video.YoutubeLink,
-                    }
-                )
+                new Controls.ExternalLink {
+                    Text = $"Compilation Video: {video.FileName}",
+                    Url = video.YoutubeLink,
+                }
+            )
         );
 
         AggressiveSwitch.IsOn =
@@ -81,7 +81,11 @@ public sealed partial class Settings : Page {
     }
 
     private void ThemeSelector_Loaded(object sender, RoutedEventArgs e) {
-        (sender as MUXC.RadioButtons)!.SelectedIndex = App.Current.CurrentTheme;
+        (sender as MUXC.RadioButtons)!.SelectedIndex =
+            ApplicationData.Current.LocalSettings.Values[nameof(Classes.Key.ThemeSetting)]
+                as int? ?? App.Current.CurrentTheme;
+
+        System.Diagnostics.Debug.WriteLine("ThemeSelector_Loaded");
     }
 
     private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e) {

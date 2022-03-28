@@ -15,8 +15,9 @@
             <FontIcon
                 x:Name="ExtIcon"
                 Margin="8,0"
-                VerticalAlignment="Bottom"
-                FontFamily="Segoe MDL2 Assets"
+                VerticalAlignment="Center"
+                FontFamily="{StaticResource SymbolThemeFontFamily}"
+                FontSize="16"
                 Foreground="Blue"
                 Glyph="&#xE8A7;" />
         </StackPanel>

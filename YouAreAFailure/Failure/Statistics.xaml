@@ -30,7 +30,7 @@
         <StackPanel Orientation="Horizontal">
             <Button x:Name="ShareButton" Click="ShareButton_Click">
                 <StackPanel Padding="5" Orientation="Horizontal">
-                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72D;" />
+                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE72D;" />
                     <TextBlock Margin="5,0" Style="{StaticResource TextLarge}">
                         Share your Statistics
                     </TextBlock>

@@ -42,7 +42,7 @@
             Visibility="Collapsed">
             <StackPanel Padding="20" Orientation="Horizontal">
                 <FontIcon
-                    FontFamily="Segoe MDL2 Assets"
+                    FontFamily="{StaticResource SymbolThemeFontFamily}"
                     Foreground="{x:Bind ForegroundYellow}"
                     Glyph="&#xF167;" />
                 <TextBlock
@@ -70,7 +70,7 @@
 
         <TextBlock Style="{StaticResource Header2}">Aggressive Mode</TextBlock>
         <TextBlock FontSize="16" TextWrapping="Wrap">
-            You will get RICK ROLL if you stop watching the video before it is finished.
+            You will get RICK ROLL if you stop watching the video before it is finished
         </TextBlock>
         <ToggleSwitch
             x:Name="AggressiveSwitch"

@@ -19,7 +19,8 @@ public partial class AppStateTest {
         int expectedCurrent,
         int expectedLongest,
         int _,
-        DateTime? today = null) {
+        DateTime? today = null
+    ) {
         var state = new AppState();
         await state.DatabaseReady;
 

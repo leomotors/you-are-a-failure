@@ -65,8 +65,8 @@ PS. It is because you have aggressive mode turned on, you turned it on yourself,
         FailurePlayer.Source = MediaSource.CreateFromUri(
             new Uri(
                 $"ms-appx:///{Classes.Steven.VideoRoot}/{VideoName}.{Classes.Steven.VideoExtension}"
-                )
-            );
+            )
+        );
 
         FailurePlayer.MediaPlayer.Volume = param?.Volume ?? 1;
 
@@ -87,12 +87,27 @@ PS. It is because you have aggressive mode turned on, you turned it on yourself,
             FailuredStarted = true;
         } else if (sender.PlaybackState == MediaPlaybackState.Paused) {
             if (FailuredStarted) {
-                App.Current.State.AddWatched(VideoName!);
+                var state = App.Current.State;
+                state.AddWatched(VideoName!);
+
+                var content = "That is emotional damage!\n\n" +
+                    (state.IsAllWatched
+                        ? "Good to see that you completed all your treatment for today! Visit Statistics Page to see something interesting!"
+                        : "Good luck on continuing your treatment!");
 
                 // https://social.msdn.microsoft.com/Forums/sqlserver/en-US/49426c88-fb6e-4894-b5ea-25d0f38b3358/uwpthe-application-called-an-interface-that-was-marshalled-for-a-different-thread?forum=wpdevelop
                 await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
                     FooterTextBlock.Text =
                         "👍You just completed your Treatment, That is Emotional Damage👍";
+
+                    var dialog = new ContentDialog {
+                        Title = "Wow! You just completed your Treatment!",
+                        Content = content,
+                        DefaultButton = ContentDialogButton.Close,
+                        CloseButtonText = "ok",
+                    };
+
+                    _ = dialog.ShowAsync();
                 });
             }
         }
