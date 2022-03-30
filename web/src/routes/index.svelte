@@ -149,27 +149,40 @@
   <div class="t-10" />
 
   <h2>Download now for 🪟Windows</h2>
-  <h4>✅ Support from Windows 10 2004 (10.0.19041)</h4>
+  <h4>✅ Support from Windows 10 1903 (10.0.18362)</h4>
+  <p class="bruh">if you use older than this, consider what you are using</p>
+  <h4>✅ Support 32-bit and 64-bit</h4>
+  <p class="bruh">you use 32-bit in 2022? pathetic</p>
   <h4>✅ Support Windows 11's New Mica Material</h4>
+  <p class="bruh">which of course, only visible if you use Windows 11</p>
   <h4>❌ Steal your personal data</h4>
+  <p class="bruh">unlike ...</p>
   <h4>✅ Emotional Damage</h4>
-  <p class="italic">
-    Note: This app is currently in private release candidate.
-  </p>
+  <p class="bruh line-through">guaranteed damage by Steven He</p>
 
-  <div class="t-5" />
-  <h2>Public Release Coming Soon!</h2>
-  <h3>🕛 April's Fool Day 2022</h3>
-  <h3>📍 At Microsoft Store</h3>
-  <Countdown />
-  <p class="italic text-xl">
-    Note: Timezone may be complicated and in this case, I never know how
-    accurate the timer is.
-  </p>
+  <Countdown>
+    <a
+      href="https://www.microsoft.com/store/productId/9NJ5TZW6MDGL"
+      target="_blank"
+      rel="noopener"
+    >
+      <img
+        class="my-10 mx-auto"
+        alt="Get it from Microsoft Store"
+        src="https://getbadgecdn.azureedge.net/images/English_L.png"
+        width="500"
+      />
+    </a>
+  </Countdown>
+
   <p>If you like this app, rate it 5⭐ and also ⭐ my GitHub Repo!</p>
 </main>
 
 <style lang="postcss">
+  .bruh {
+    @apply italic leading-none text-xl;
+  }
+
   .quote:before {
     content: "\201C";
   }

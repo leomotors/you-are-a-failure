@@ -22,9 +22,12 @@ UWP + WinUI 2 (C#)
 
 ### Via Microsoft Store (Recommended)
 
-_The app is not publicly available yet_
+**NOTE**: If you visit here before 1 April (Before full release is released)
+you will see the beta version!
 
-_Public release will be released at April's Fool Day 2022_
+<a href="https://www.microsoft.com/store/productId/9NJ5TZW6MDGL">
+<img src="https://getbadgecdn.azureedge.net/images/English_L.png" width=250>
+</a>
 
 ### or Build from Sauce (Good Luck)
 
