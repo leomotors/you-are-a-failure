@@ -9,7 +9,7 @@
   <Identity
     Name="Leomotors.YouAreAFailure.Debug"
     Publisher="CN=Leomotors"
-    Version="1.0.60.0" />
+    Version="1.0.69.0" />
 
   <mp:PhoneIdentity PhoneProductId="54184a93-8dcf-4a09-9cf4-cee9c428cbf4" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

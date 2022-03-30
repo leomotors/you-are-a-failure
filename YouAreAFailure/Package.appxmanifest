@@ -9,7 +9,7 @@
   <Identity
     Name="65313Leomotors.YouareaFailure"
     Publisher="CN=E10452D0-AB02-4FD0-8CF3-B1A36A4584AA"
-    Version="1.0.48.0" />
+    Version="1.0.69.0" />
 
   <mp:PhoneIdentity PhoneProductId="9b164781-9d5e-4668-89da-851e4bb1ad57" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
