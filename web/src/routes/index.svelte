@@ -18,8 +18,32 @@
   </p>
 
   <div class="t-5" />
-  <p>That is <strong><i>Emotional Damage!</i></strong></p>
-  <div class="t-10" />
+
+  <p class="quote text-lg">
+    The Admissions Committee has completed its review of your application. I am
+    very sorry to tell you that you were not admitted to the MIT Class of 2026.
+  </p>
+
+  <p class="quote text-lg">
+    The Committee on Admissions has completed its meetings, and I am very sorry
+    to inform you that we cannot offer you admission to the Class of 2026.
+    (Harvard)
+  </p>
+
+  <p class="quote text-lg">
+    I am sorry to inform you that we are unable to admit you to Princeton
+    University this year.
+  </p>
+
+  <p class="quote text-lg">
+    The Yale Admissions Committee has completed its evaluation of this year’s
+    candidates, and I am genuinely sorry that we are not able to offer you a
+    place in the Class of 2026.
+  </p>
+
+  <div class="t-5" />
+  <p class="text-4xl">That is <strong><em>Emotional Damage!</em></strong></p>
+  <div class="t-5" />
   <Image img="Emotional Damage GIF" />
   <p class="text-xl">"Emotional Damage" by Steven He</p>
 
