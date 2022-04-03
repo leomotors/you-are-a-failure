@@ -22,6 +22,22 @@ public sealed partial class MainPage : Page {
         titleBar.ButtonBackgroundColor = Colors.Transparent;
         titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
+        if (App.Current.IsLightTheme) {
+            titleBar.ButtonForegroundColor = Colors.Black;
+            titleBar.ButtonHoverForegroundColor = Colors.Black;
+            titleBar.ButtonPressedForegroundColor = Colors.Black;
+
+            titleBar.ButtonHoverBackgroundColor = Color.FromArgb(32, 0, 0, 0);
+            titleBar.ButtonPressedBackgroundColor = Color.FromArgb(16, 0, 0, 0);
+        } else {
+            titleBar.ButtonForegroundColor = Colors.White;
+            titleBar.ButtonHoverForegroundColor = Colors.White;
+            titleBar.ButtonPressedForegroundColor = Colors.White;
+
+            titleBar.ButtonHoverBackgroundColor = Color.FromArgb(32, 0, 0, 0);
+            titleBar.ButtonPressedBackgroundColor = Color.FromArgb(16, 0, 0, 0);
+        }
+
         // Hide default title bar.
         var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
         coreTitleBar.ExtendViewIntoTitleBar = true;
