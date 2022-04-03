@@ -8,6 +8,8 @@ The App that will keep reminding you that "_you are a failure!_"
 
 Explained at https://leomotors.github.io/you-are-a-failure/
 
+TL;DR because I'm a _failure_
+
 ## Technologies used
 
 UWP + WinUI 2 (C#)
@@ -22,13 +24,15 @@ UWP + WinUI 2 (C#)
 
 ### Via Microsoft Store (Recommended)
 
-_The app is not publicly available yet_
-
-_Public release will be released at April's Fool Day 2022_
+<a href="https://www.microsoft.com/store/productId/9NJ5TZW6MDGL">
+<img src="https://getbadgecdn.azureedge.net/images/English_L.png" width=250>
+</a>
 
 ### or Build from Sauce (Good Luck)
 
 ## Screenshots 📸
+
+_some screenshots are from previous version, I'm lazy to take new one_
 
 <img src="web/static/screenshots/home.webp" width=600>
 
