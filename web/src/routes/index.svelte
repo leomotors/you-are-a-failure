@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Countdown from "$components/Countdown.svelte";
   import Image from "$components/image.svelte";
   import Youtube from "$components/youtube.svelte";
 </script>
@@ -184,20 +183,18 @@
   <h4>✅ Emotional Damage</h4>
   <p class="bruh line-through">guaranteed damage by Steven He</p>
 
-  <Countdown>
-    <a
-      href="https://www.microsoft.com/store/productId/9NJ5TZW6MDGL"
-      target="_blank"
-      rel="noopener"
-    >
-      <img
-        class="my-10 mx-auto"
-        alt="Get it from Microsoft Store"
-        src="https://getbadgecdn.azureedge.net/images/English_L.png"
-        width="500"
-      />
-    </a>
-  </Countdown>
+  <a
+    href="https://www.microsoft.com/store/productId/9NJ5TZW6MDGL"
+    target="_blank"
+    rel="noopener"
+  >
+    <img
+      class="my-10 mx-auto"
+      alt="Get it from Microsoft Store"
+      src="https://getbadgecdn.azureedge.net/images/English_L.png"
+      width="500"
+    />
+  </a>
 
   <p>If you like this app, rate it 5⭐ and also ⭐ my GitHub Repo!</p>
 </main>
