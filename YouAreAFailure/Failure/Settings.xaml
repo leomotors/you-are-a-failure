@@ -34,25 +34,23 @@
         </TextBlock>
 
         <TextBlock Style="{StaticResource Header2}">App Theme</TextBlock>
-        <Border
-            x:Name="ThemeChangeAlertBorder"
-            Margin="0,10,0,10"
-            Background="{x:Bind BackgroundYellow}"
-            CornerRadius="6"
-            Visibility="Collapsed">
-            <StackPanel Padding="20" Orientation="Horizontal">
-                <FontIcon
-                    FontFamily="{StaticResource SymbolThemeFontFamily}"
-                    Foreground="{x:Bind ForegroundYellow}"
-                    Glyph="&#xF167;" />
-                <TextBlock
-                    Margin="10,0,0,0"
-                    FontSize="16"
-                    FontWeight="Medium">
-                    You need to restart the app to apply the changes
-                </TextBlock>
-            </StackPanel>
-        </Border>
+
+        <muxc:InfoBar x:Name="ThemeChangeInfoBar" />
+        <muxc:InfoBar
+            x:Name="ThemeChangeAlert"
+            Title="You need to restart the app to apply the changes"
+            IsClosable="False"
+            Severity="Warning">
+            <muxc:InfoBar.ActionButton>
+                <Button
+                    Margin="0"
+                    Padding="8,5"
+                    Click="Restart_Click"
+                    FontSize="14">
+                    Restart Now
+                </Button>
+            </muxc:InfoBar.ActionButton>
+        </muxc:InfoBar>
         <muxc:RadioButtons
             Loaded="ThemeSelector_Loaded"
             SelectedIndex="0"

@@ -1,6 +1,6 @@
-﻿using Windows.Storage;
+﻿using Windows.ApplicationModel.Core;
+using Windows.Storage;
 using Windows.System;
-using Windows.UI;
 
 #nullable enable
 
@@ -10,19 +10,6 @@ namespace YouAreAFailure.Failure;
 /// Settings Page, Also contains information about app &amp; credits.
 /// </summary>
 public sealed partial class Settings : Page {
-    // From Alert Box at System > Display > Custom Scaling
-    private readonly SolidColorBrush BackgroundYellow = new(
-            App.Current.IsLightTheme
-                ? Color.FromArgb(255, 255, 244, 206)
-                : Color.FromArgb(255, 67, 53, 25)
-        );
-
-    // From Alert Box at System > Display > Custom Scaling
-    private readonly SolidColorBrush ForegroundYellow = new(
-            App.Current.IsLightTheme
-                ? Color.FromArgb(255, 157, 93, 0)
-                : Color.FromArgb(255, 252, 225, 0)
-        );
 
     public Settings() {
         this.InitializeComponent();
@@ -92,9 +79,22 @@ public sealed partial class Settings : Page {
         ApplicationData.Current.LocalSettings.Values[nameof(Classes.Key.ThemeSetting)]
             = buttons!.SelectedIndex;
 
-        ThemeChangeAlertBorder.Visibility =
-            App.Current.CurrentTheme == buttons.SelectedIndex
-                ? Visibility.Collapsed : Visibility.Visible;
+        ThemeChangeAlert.IsOpen =
+            App.Current.CurrentTheme != buttons.SelectedIndex;
+    }
+
+    private async void Restart_Click(object sender, RoutedEventArgs e) {
+        var result = await CoreApplication.RequestRestartAsync("");
+
+        if (result == AppRestartFailureReason.RestartPending) {
+            (ThemeChangeAlert.ActionButton.Content as Button)!.Content = "Restarting...";
+            return;
+        }
+
+        ThemeChangeInfoBar.Title = "Cannot Restart";
+        ThemeChangeInfoBar.Message = $"Failure Reason: {result}, please restart manually";
+        ThemeChangeInfoBar.Severity = MUXC.InfoBarSeverity.Error;
+        ThemeChangeInfoBar.IsOpen = true;
     }
 
     private async void OpenSave_Click(object sender, RoutedEventArgs e) {

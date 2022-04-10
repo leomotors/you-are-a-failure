@@ -9,7 +9,10 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
 
-    <HyperlinkButton NavigateUri="{x:Bind Url, Mode=OneWay}">
+    <HyperlinkButton
+        NavigateUri="{x:Bind Url, Mode=OneWay}"
+        PointerEntered="OnPointerEntered"
+        PointerExited="OnPointerExited">
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="{x:Bind Text, Mode=OneWay}" />
             <FontIcon
