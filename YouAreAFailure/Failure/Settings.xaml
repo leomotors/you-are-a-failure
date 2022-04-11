@@ -101,7 +101,7 @@
                 View License (MIT)
             </HyperlinkButton>
 
-            <controls:ExternalLink Text="Rate the App in Microsoft Store" Url="{x:Bind classes:Constants.MSStoreLink, Mode=OneTime}" />
+            <controls:ExternalLink Text="Rate this App in Microsoft Store" Url="{x:Bind classes:Constants.MSStoreReviewLink, Mode=OneTime}" />
         </StackPanel>
     </StackPanel>
 </Page>

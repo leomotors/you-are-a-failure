@@ -9,6 +9,8 @@ public partial class AppState {
 
     public Action? OnStateChanged;
 
+    public int videoDismissed = 0;
+
     public static int? GetIndex(string key) {
         for (var i = 0; i < Steven.VideoList.Length; i++) {
             if (Steven.VideoList[i].FileName == key) {

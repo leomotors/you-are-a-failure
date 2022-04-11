@@ -75,6 +75,9 @@ public sealed partial class MainPage : Page {
 
         // Register a handler for when a page want to browse to other page
         Failure.WelcomeFailure.Navigator = RemoteNavigation;
+
+        Failure.TortureChamber.OnGoSettings = () =>
+            FailureFrame.Navigate(typeof(Failure.Settings));
     }
 
     private void UpdateTitleBarLayout(CoreApplicationViewTitleBar coreTitleBar) {

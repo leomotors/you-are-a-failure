@@ -13,12 +13,13 @@ namespace YouAreAFailure.Failure;
 public sealed partial class TortureChamber : Page {
     private bool FailuredStarted = false;
     private string? VideoName;
+    public static Action? OnGoSettings;
 
     public TortureChamber() {
         this.InitializeComponent();
     }
 
-    protected override void OnNavigatedFrom(NavigationEventArgs e) {
+    protected override async void OnNavigatedFrom(NavigationEventArgs e) {
         FailurePlayer.MediaPlayer.Dispose();
 
         var state = App.Current.State;
@@ -27,9 +28,11 @@ public sealed partial class TortureChamber : Page {
             ApplicationData.Current.LocalSettings.Values[nameof(Classes.Key.AggressiveMode)]
                 as bool? ?? false;
 
-        if (aggressiveOn &&
-            !state.Watched[(int)Classes.AppState.GetIndex(VideoName!)!]
-        ) {
+        if (state.Watched[(int)Classes.AppState.GetIndex(VideoName!)!]) {
+            return;
+        }
+
+        if (aggressiveOn) {
             _ = Classes.Bruh.RickRoll();
 
             const string content =
@@ -45,6 +48,36 @@ PS. It is because you have aggressive mode turned on, you turned it on yourself,
             };
 
             _ = dialog.ShowAsync();
+        } else {
+            state.videoDismissed++;
+
+            var content =
+                $"You have dismissed the video {state.videoDismissed} times in the row, "
+                + "I recommend you to turn on aggressive mode "
+                + "so you can better focus and gain motivation!";
+
+            if (state.videoDismissed >= 3) {
+                var dialog = new ContentDialog {
+                    Title = "Inconsistency Alert!",
+                    Content = content,
+                    DefaultButton = ContentDialogButton.Primary,
+                    PrimaryButtonText = "Go to Settings",
+                    SecondaryButtonText = "idk and idc",
+                    CloseButtonText = "what",
+                };
+
+                var result = await dialog.ShowAsync();
+
+                if (result != ContentDialogResult.None) {
+                    state.videoDismissed = int.MinValue;
+                }
+
+                if (result == ContentDialogResult.Primary) {
+                    if (OnGoSettings is not null) {
+                        OnGoSettings();
+                    }
+                }
+            }
         }
 
         base.OnNavigatedFrom(e);
@@ -107,7 +140,9 @@ PS. It is because you have aggressive mode turned on, you turned it on yourself,
                         CloseButtonText = "ok",
                     };
 
-                    _ = dialog.ShowAsync();
+                    try {
+                        _ = dialog.ShowAsync();
+                    } catch { }
                 });
             }
         }
