@@ -34,11 +34,13 @@
         </TextBlock>
 
         <TextBlock Style="{StaticResource Header2}">App Theme</TextBlock>
+        <TextBlock FontSize="16" FontStyle="Italic">It is self-explained, do you understand?</TextBlock>
 
-        <muxc:InfoBar x:Name="ThemeChangeInfoBar" />
+        <muxc:InfoBar x:Name="ThemeChangeInfoBar" Margin="-1,10,0,-6" />
         <muxc:InfoBar
             x:Name="ThemeChangeAlert"
             Title="You need to restart the app to apply the changes"
+            Margin="-1,10,0,0"
             IsClosable="False"
             Severity="Warning">
             <muxc:InfoBar.ActionButton>
@@ -68,7 +70,7 @@
 
         <TextBlock Style="{StaticResource Header2}">Aggressive Mode</TextBlock>
         <TextBlock FontSize="16" TextWrapping="Wrap">
-            You will get RICK ROLL if you stop watching the video before it is finished
+            You will get RICK ROLL if you stop watching the video before it is finished, considerably increase your concentration and motivation.
         </TextBlock>
         <ToggleSwitch
             x:Name="AggressiveSwitch"

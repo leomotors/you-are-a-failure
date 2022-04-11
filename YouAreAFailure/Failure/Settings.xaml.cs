@@ -124,8 +124,25 @@ public sealed partial class Settings : Page {
         }
     }
 
-    private void AggressiveSwitch_Toggled(object sender, RoutedEventArgs e) {
+    private async void AggressiveSwitch_Toggled(object sender, RoutedEventArgs e) {
+        var tSwitch = (sender as ToggleSwitch)!;
         ApplicationData.Current.LocalSettings.Values[nameof(Classes.Key.AggressiveMode)]
-            = (sender as ToggleSwitch)!.IsOn;
+            = tSwitch.IsOn;
+
+        if (!tSwitch.IsOn) {
+            var dialog = new ContentDialog {
+                Title = "R u sure?",
+                Content = "I recommend to you to keep this on, Concentration is the key.",
+                DefaultButton = ContentDialogButton.Primary,
+                PrimaryButtonText = "Y E S",
+                CloseButtonText = "no"
+            };
+
+            var result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.None) {
+                tSwitch.IsOn = true;
+            }
+        }
     }
 }
