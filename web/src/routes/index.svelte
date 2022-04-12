@@ -174,7 +174,7 @@
   <h2>Download now for 🪟Windows</h2>
   <h4>✅ Support from Windows 10 1903 (10.0.18362)</h4>
   <p class="bruh">if you use older than this, consider what you are using</p>
-  <h4>✅ Support 32-bit and 64-bit</h4>
+  <h4>✅ Support 32-bit, 64-bit, ARM32 and ARM64</h4>
   <p class="bruh">you use 32-bit in 2022? pathetic</p>
   <h4>✅ Support Windows 11's New Mica Material</h4>
   <p class="bruh">which of course, only visible if you use Windows 11</p>
