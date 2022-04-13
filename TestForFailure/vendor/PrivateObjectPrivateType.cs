@@ -3,10 +3,8 @@
 
 // https://github.com/Microsoft/testfx/issues/366
 
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
-using System.Reflection;
 
 namespace Microsoft.VisualStudio.TestTools.UnitTesting;
 
