@@ -44,15 +44,11 @@ public sealed partial class Statistics : Page {
         base.OnNavigatedTo(e);
     }
 
-    // https://blog.mzikmund.com/2020/07/highlighting-dates-in-uwp-calendarview/#comments
-    private void HighlightDay(CalendarViewDayItem day, Color color) {
-        day.Background = new SolidColorBrush(color);
-    }
+    private readonly SolidColorBrush CalenderColor =
+        new((Color)Application.Current.Resources[
+            App.Current.IsLightTheme ? "SystemAccentColorLight2" : "SystemAccentColorDark2"]);
 
-    private readonly Color AkiColor =
-        App.Current.IsLightTheme
-            ? Color.FromArgb(255, 111, 159, 216)
-            : Color.FromArgb(255, 36, 44, 80);
+    private readonly SolidColorBrush TransparentBrush = new(Colors.Transparent);
 
     private void FailureCalendar_DayItemChanging(CalendarView sender, CalendarViewDayItemChangingEventArgs args) {
         var dateOffset = args.Item.Date;
@@ -60,10 +56,11 @@ public sealed partial class Statistics : Page {
 
         var color =
             App.Current.State.WatchedDate.Contains(date) && date != Today
-                ? AkiColor
-                : Colors.Transparent;
+                ? CalenderColor
+                : TransparentBrush;
 
-        HighlightDay(args.Item, color);
+        // https://blog.mzikmund.com/2020/07/highlighting-dates-in-uwp-calendarview/#comments
+        args.Item.Background = color;
     }
 
     private async void ShareButton_Click(object sender, RoutedEventArgs e) {

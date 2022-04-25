@@ -92,7 +92,7 @@ public sealed partial class MainPage : Page {
     }
 
     // Update the TitleBar based on the inactive/active state of the app
-    private void Current_Activated(object sender, Windows.UI.Core.WindowActivatedEventArgs e) {
+    private void Current_Activated(object sender, WindowActivatedEventArgs e) {
         var defaultForegroundBrush =
             (SolidColorBrush)Application.Current.Resources["TextFillColorPrimaryBrush"];
         var inactiveForegroundBrush =

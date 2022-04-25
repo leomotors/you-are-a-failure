@@ -9,10 +9,7 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
 
-    <HyperlinkButton
-        NavigateUri="{x:Bind Url, Mode=OneWay}"
-        PointerEntered="OnPointerEntered"
-        PointerExited="OnPointerExited">
+    <HyperlinkButton NavigateUri="{x:Bind Url, Mode=OneWay}">
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="{x:Bind Text, Mode=OneWay}" />
             <FontIcon
@@ -21,7 +18,6 @@
                 VerticalAlignment="Center"
                 FontFamily="{StaticResource SymbolThemeFontFamily}"
                 FontSize="16"
-                Foreground="Blue"
                 Glyph="&#xE8A7;" />
         </StackPanel>
     </HyperlinkButton>

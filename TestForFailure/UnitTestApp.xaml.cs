@@ -4,6 +4,7 @@ global using System.Reflection;
 global using System.Threading.Tasks;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using Microsoft.VisualStudio.TestPlatform.TestExecutor;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -56,12 +57,12 @@ public sealed partial class App : Application {
             Window.Current.Content = rootFrame;
         }
 
-        Microsoft.VisualStudio.TestPlatform.TestExecutor.UnitTestClient.CreateDefaultUI();
+        UnitTestClient.CreateDefaultUI();
 
         // Ensure the current window is active
         Window.Current.Activate();
 
-        Microsoft.VisualStudio.TestPlatform.TestExecutor.UnitTestClient.Run(e.Arguments);
+        UnitTestClient.Run(e.Arguments);
     }
 
     /// <summary>
